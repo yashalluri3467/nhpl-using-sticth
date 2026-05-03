@@ -1338,6 +1338,65 @@ app.post("/api/admin/webhooks/test", async (req, res) => {
   }
   res.status(404).json({ error: "Subscription not found." });
 });
+// ─── PostgREST mock endpoints for clusters ───
+app.get("/api/hotels", async (req, res) => res.json(await getAllLiveHotels()));
+
+app.get("/api/customer_bookings", async (req, res) => {
+  const all = pool ? await query("SELECT * FROM customer_bookings ORDER BY id DESC") : memory.bookings.slice().reverse();
+  res.json(all);
+});
+
+app.post("/api/customer_bookings", async (req, res) => {
+  const b = await createBooking({ type: req.body.type || 'Combined', customer_name: req.body.guest_name || 'Guest', date: req.body.date, notes: req.body.notes });
+  res.json([b]);
+});
+
+app.get("/api/restaurant_orders", async (req, res) => res.json(await getRestaurantOrders()));
+
+app.patch("/api/restaurant_orders", async (req, res) => {
+  const idMatch = req.query.id?.match(/eq\.(\d+)/);
+  if (idMatch) await updateOrderStatus(idMatch[1], req.body.status);
+  res.json([{ id: idMatch ? idMatch[1] : 1, status: req.body.status }]);
+});
+
+app.get("/api/hotel_rooms", async (req, res) => {
+  const rooms = pool ? await query("SELECT * FROM hotel_rooms ORDER BY room_no ASC") : memory.hotel_rooms;
+  res.json(rooms);
+});
+
+app.get("/api/hotel_bookings", async (req, res) => {
+  const bookings = pool ? await query("SELECT * FROM hotel_bookings ORDER BY id DESC LIMIT 5") : memory.hotel_bookings.slice().reverse().slice(0, 5);
+  res.json(bookings);
+});
+
+app.get("/api/hotel_services", async (req, res) => {
+  const services = pool ? await query("SELECT * FROM hotel_services WHERE status='Open'") : memory.hotel_services.filter(s => s.status === 'Open');
+  res.json(services);
+});
+
+app.patch("/api/hotel_services", async (req, res) => {
+  const idMatch = req.query.id?.match(/eq\.(\d+)/);
+  if (idMatch) await updateHotelServiceStatus(idMatch[1], 'done');
+  res.json([{ id: idMatch ? idMatch[1] : 1, status: req.body.status }]);
+});
+
+app.get("/api/travel_requests", async (req, res) => {
+  const status = req.query.status?.replace('eq.', '');
+  const requests = [
+    { id: 1, pickup: "Ranchi Airport", destination: "Netarhat", passenger_name: "John Doe", fare: 2500, status: "In Progress", time: "09:00 AM" },
+    { id: 2, pickup: "Magnolia Point", destination: "Hotel", passenger_name: "Jane Smith", fare: 500, status: "Scheduled", time: "17:00" }
+  ];
+  if (status) {
+    res.json(requests.filter(r => r.status === status));
+  } else {
+    res.json(requests);
+  }
+});
+
+app.patch("/api/travel_requests", async (req, res) => {
+  res.json([{ id: 1, status: req.body.status }]);
+});
+
 app.use("/api", (req, res) => {
   res.status(404).json({ error: `API route not found: ${req.method} ${req.originalUrl}` });
 });
