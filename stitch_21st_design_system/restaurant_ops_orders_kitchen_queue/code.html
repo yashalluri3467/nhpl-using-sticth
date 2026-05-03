@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marketplace Ops Console - Restaurant Fulfillment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #FAFAFA;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#cfc4c5",
+                        "surface-dim": "#dadada",
+                        "outline": "#7e7576",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "secondary": "#4b41e1",
+                        "on-primary-container": "#848484",
+                        "tertiary-fixed": "#6ffbbe",
+                        "tertiary-container": "#002113",
+                        "secondary-fixed": "#e2dfff",
+                        "surface-tint": "#5e5e5e",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-bright": "#f9f9f9",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#645efb",
+                        "on-primary-fixed-variant": "#474747",
+                        "surface": "#f9f9f9",
+                        "on-secondary-container": "#fffbff",
+                        "on-surface": "#1a1c1c",
+                        "on-surface-variant": "#4c4546",
+                        "tertiary": "#000000",
+                        "inverse-surface": "#2f3131",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f3f3f3",
+                        "on-secondary-fixed-variant": "#3323cc",
+                        "on-secondary-fixed": "#0f0069",
+                        "on-tertiary-container": "#009668",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-fixed": "#1b1b1b",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary-fixed": "#002113",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-background": "#1a1c1c",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "primary-container": "#1b1b1b",
+                        "primary": "#000000",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#c6c6c6",
+                        "background": "#f9f9f9",
+                        "primary-fixed": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "1.5rem",
+                        "sm": "0.5rem",
+                        "md": "1rem",
+                        "xs": "0.25rem",
+                        "xl": "2.5rem",
+                        "margin": "2rem",
+                        "gutter": "1rem",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h3": ["Work Sans"],
+                        "h2": ["Work Sans"],
+                        "h1": ["Work Sans"],
+                        "label-md": ["Inter"],
+                        "display": ["Work Sans"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-sm": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h3": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["13px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-body-md text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 w-full px-6 sticky top-0 z-50 bg-white border-b border-gray-200">
+<div class="flex items-center gap-8">
+<span class="text-lg font-black text-black uppercase tracking-widest font-work-sans">Marketplace Ops Console</span>
+<nav class="hidden md:flex items-center h-full gap-4">
+<a class="text-gray-500 hover:text-black px-2 font-work-sans text-sm font-medium tracking-tight transition-colors duration-200" href="#">Hotels</a>
+<a class="text-black border-b-2 border-black h-full flex items-center px-2 font-work-sans text-sm font-medium tracking-tight" href="#">Dining</a>
+<a class="text-gray-500 hover:text-black px-2 font-work-sans text-sm font-medium tracking-tight transition-colors duration-200" href="#">Logistics</a>
+<a class="text-gray-500 hover:text-black px-2 font-work-sans text-sm font-medium tracking-tight transition-colors duration-200" href="#">Admin</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 cursor-pointer transition-colors duration-200 hover:bg-gray-50 rounded-lg">
+<span class="material-symbols-outlined text-gray-900" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 cursor-pointer transition-colors duration-200 hover:bg-gray-50 rounded-lg">
+<span class="material-symbols-outlined text-gray-900" data-icon="apps">apps</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover border border-gray-200" data-alt="A professional headshot of a restaurant manager in a sleek, modern office setting. The lighting is soft and high-key, emphasizing clean lines and a professional atmosphere. The background is a blurred minimalist interior with hints of neutral tones and metallic surfaces, reflecting a high-end management environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcL5sUQH9hV0Fy8wPCRBnUhE4JM1S1jPG7yUZZRXqffdyYhFAL8aMtdkaF9L6a4q86Bo-8-mQqqEJP2BYp9aZSr5VFWd3xracDEb2LfS_SS-L6MaRVd2m_-xGp653s1z-JoEjbmBN68AXJtxkJ-f8cOARKrzBc4oaD0mJtHsukDxdx9Z4R0YvvR-Q7A_kKNlgdorBSFo_Q8-FMJsB84y81QQFi_iqwrcOWxPiEUcw9nEMy1TG7d_g9UnEgX4E0m-5qME23yU3jwTNn"/>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 border-r border-gray-200 fixed left-0 top-0 z-40 bg-white flex flex-col pt-20">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-black flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white" data-icon="restaurant">restaurant</span>
+</div>
+<div>
+<h2 class="text-xl font-bold text-black font-work-sans leading-tight">Master Control</h2>
+<p class="text-xs font-semibold uppercase tracking-wider text-gray-400">Global Overview</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-gray-500 flex items-center py-3 px-6 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="analytics">analytics</span> Global KPIs
+            </a>
+<a class="bg-gray-50 border-l-4 border-black text-black flex items-center py-3 px-6 font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="handshake" data-weight="fill" style="font-variation-settings: 'FILL' 1;">handshake</span> Partner Directory
+            </a>
+<a class="text-gray-500 flex items-center py-3 px-6 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="view_list">view_list</span> Service Queues
+            </a>
+<a class="text-gray-500 flex items-center py-3 px-6 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="inventory_2">inventory_2</span> Inventory Control
+            </a>
+<a class="text-gray-500 flex items-center py-3 px-6 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="local_shipping">local_shipping</span> Logistics Feed
+            </a>
+<a class="text-gray-500 flex items-center py-3 px-6 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="settings_suggest">settings_suggest</span> System Settings
+            </a>
+</nav>
+<div class="p-6 border-t border-gray-100">
+<button class="w-full bg-black text-white py-3 rounded-lg font-label-caps text-xs flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="file_download">file_download</span> Export Reports
+            </button>
+<div class="mt-6 space-y-3">
+<a class="flex items-center text-gray-500 hover:text-black transition-colors font-label-caps text-xs uppercase" href="#">
+<span class="material-symbols-outlined mr-2 text-sm" data-icon="help">help</span> Help Center
+                </a>
+<a class="flex items-center text-gray-500 hover:text-black transition-colors font-label-caps text-xs uppercase" href="#">
+<span class="material-symbols-outlined mr-2 text-sm" data-icon="description">description</span> Documentation
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 p-lg">
+<div class="max-w-[1600px] mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h1 class="font-h1 text-h1 text-primary">Operations Center</h1>
+<p class="font-body-md text-on-surface-variant mt-xs">Managing 42 active fulfillment channels across 3 zones.</p>
+</div>
+<div class="flex gap-md">
+<div class="bg-white border border-outline-variant px-md py-sm flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="font-label-caps text-on-surface text-label-caps">LIVE STATUS: NOMINAL</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-lg auto-rows-min">
+<!-- Live Order Stream (Col 1-4) -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<h3 class="font-h3 text-h3">Live Order Stream</h3>
+<div class="flex gap-xs">
+<button class="px-sm py-xs bg-black text-white text-label-caps rounded-lg">ALL</button>
+<button class="px-sm py-xs bg-white border border-outline-variant text-label-caps rounded-lg">DINE-IN</button>
+</div>
+</div>
+<div class="space-y-md">
+<!-- Order Card -->
+<div class="bg-white border border-outline p-md relative overflow-hidden">
+<div class="absolute left-0 top-0 h-full w-1 bg-secondary"></div>
+<div class="flex justify-between items-start mb-sm">
+<div>
+<span class="font-label-caps text-secondary uppercase tracking-widest">#ORD-8821</span>
+<h4 class="font-h3 text-md mt-xs">Delivery • 3 Items</h4>
+</div>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-caps px-2 py-0.5 rounded text-[10px]">PREPARING</span>
+</div>
+<div class="space-y-xs text-on-surface-variant font-body-sm mb-md">
+<p>1x Truffle Wagyu Burger (Medium)</p>
+<p>2x Parmesan Fries</p>
+<p>1x Classic Lemonade</p>
+</div>
+<div class="flex justify-between items-center pt-sm border-t border-gray-100">
+<span class="text-label-caps text-on-surface-variant">08:12 MIN AGO</span>
+<span class="font-h3 text-sm text-primary">$84.20</span>
+</div>
+</div>
+<!-- Order Card -->
+<div class="bg-white border border-outline-variant p-md">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<span class="font-label-caps text-gray-500 uppercase tracking-widest">#ORD-8822</span>
+<h4 class="font-h3 text-md mt-xs">Dine-in • Table 12</h4>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-caps px-2 py-0.5 rounded text-[10px]">NEW</span>
+</div>
+<div class="space-y-xs text-on-surface-variant font-body-sm mb-md">
+<p>2x Salmon Crudo</p>
+<p>1x Bottle Sparkling Water</p>
+</div>
+<div class="flex justify-between items-center pt-sm border-t border-gray-100">
+<span class="text-label-caps text-on-surface-variant">02:45 MIN AGO</span>
+<span class="font-h3 text-sm text-primary">$42.00</span>
+</div>
+</div>
+<!-- Order Card -->
+<div class="bg-white border border-outline-variant p-md opacity-60">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<span class="font-label-caps text-gray-500 uppercase tracking-widest">#ORD-8819</span>
+<h4 class="font-h3 text-md mt-xs">Takeaway • Web App</h4>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant font-label-caps px-2 py-0.5 rounded text-[10px]">READY</span>
+</div>
+<div class="flex justify-between items-center pt-sm border-t border-gray-100">
+<span class="text-label-caps text-on-surface-variant">14:00 MIN AGO</span>
+<span class="font-h3 text-sm text-primary">$18.50</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Kitchen Queue (Col 5-8) -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-md">
+<h3 class="font-h3 text-h3 flex items-center gap-sm">
+                        Kitchen Prep Queue
+                        <span class="material-symbols-outlined text-on-surface-variant" data-icon="timer">timer</span>
+</h3>
+<div class="bg-white border border-outline-variant overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container">
+<tr>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant">ITEM</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant">TIMER</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant">PRIORITY</th>
+</tr>
+</thead>
+<tbody class="font-body-sm divide-y divide-gray-100">
+<tr>
+<td class="px-md py-md">
+<div class="font-semibold text-primary">Truffle Wagyu Burger</div>
+<div class="text-[10px] text-on-surface-variant uppercase">STATION: GRILL 01</div>
+</td>
+<td class="px-md py-md">
+<span class="text-error font-mono font-bold">12:04</span>
+</td>
+<td class="px-md py-md">
+<span class="material-symbols-outlined text-error" data-icon="priority_high">priority_high</span>
+</td>
+</tr>
+<tr>
+<td class="px-md py-md">
+<div class="font-semibold text-primary">Seared Salmon x2</div>
+<div class="text-[10px] text-on-surface-variant uppercase">STATION: COLD 02</div>
+</td>
+<td class="px-md py-md font-mono">06:15</td>
+<td class="px-md py-md">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="low_priority">low_priority</span>
+</td>
+</tr>
+<tr>
+<td class="px-md py-md">
+<div class="font-semibold text-primary">Lobster Pasta</div>
+<div class="text-[10px] text-on-surface-variant uppercase">STATION: SAUCE 01</div>
+</td>
+<td class="px-md py-md font-mono">08:40</td>
+<td class="px-md py-md">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="drag_handle">drag_handle</span>
+</td>
+</tr>
+<tr>
+<td class="px-md py-md">
+<div class="font-semibold text-primary">Mushroom Risotto</div>
+<div class="text-[10px] text-on-surface-variant uppercase">STATION: SAUCE 02</div>
+</td>
+<td class="px-md py-md font-mono">02:10</td>
+<td class="px-md py-md">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="drag_handle">drag_handle</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Stock Management Toggles -->
+<div class="bg-surface-container p-md border border-outline-variant">
+<h4 class="font-label-caps text-xs mb-md flex items-center justify-between">
+                            CRITICAL STOCK TOGGLES
+                            <span class="material-symbols-outlined text-xs" data-icon="inventory">inventory</span>
+</h4>
+<div class="space-y-sm">
+<div class="flex items-center justify-between bg-white p-sm border border-outline-variant">
+<span class="font-body-sm font-semibold">Wagyu Beef Patties</span>
+<button class="w-10 h-5 bg-black rounded-full relative transition-colors duration-200">
+<span class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></span>
+</button>
+</div>
+<div class="flex items-center justify-between bg-white p-sm border border-outline-variant">
+<span class="font-body-sm font-semibold">Wild-caught Salmon</span>
+<button class="w-10 h-5 bg-gray-200 rounded-full relative transition-colors duration-200">
+<span class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full shadow-sm"></span>
+</button>
+</div>
+<div class="flex items-center justify-between bg-white p-sm border border-outline-variant">
+<span class="font-body-sm font-semibold">Truffle Oil</span>
+<button class="w-10 h-5 bg-black rounded-full relative transition-colors duration-200">
+<span class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Dispatch Hub (Col 9-12) -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-md">
+<h3 class="font-h3 text-h3">Dispatch Hub</h3>
+<!-- Live Map -->
+<div class="relative h-64 bg-surface-container-high border border-outline-variant overflow-hidden grayscale contrast-125">
+<img alt="Live rider tracking map" class="w-full h-full object-cover opacity-50" data-alt="A highly detailed and minimalist digital map of a city center at night, with glowing cyan and neon violet lines representing busy streets. Small, sharp icons represent delivery riders moving in real-time. The overall style is technical and sleek, with high contrast between dark backgrounds and vibrant, luminous navigation paths." data-location="London" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4M8aNI4Hp9vTzpRK3zdQGpNxbQIysgI1wIxe4tmUnCGnxzN77GNk18E7AWv_sw-Hoy8do4In8DbUrriUf6bWxVJuK-FN7ZfQ1sWSGkrUUn7LDuNUIvrNj8fa3zMj79vvqpExO0xObCoYTRzVey5WDYaWtPJHZyEry_a8KNitZKg2AvSTIW7-okXGXGkU5zKEqG6CsO69RflHx0K9qpQ70JOQL7DsTwpGH7RCm8ttu7e7QBU0ej3ta2UbkYk8wjk4GRB0ZCLuMlKNS"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="bg-black text-white px-3 py-1 text-[10px] font-label-caps rounded-full flex items-center gap-1 shadow-xl">
+<span class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span> RIDER_04 EN ROUTE
+                            </div>
+</div>
+<div class="absolute bottom-2 right-2 bg-white px-2 py-1 border border-outline text-[10px] font-label-caps">
+                            ZONES: ACTIVE
+                        </div>
+</div>
+<!-- Rider Status -->
+<div class="bg-white border border-outline-variant flex flex-col">
+<div class="p-md border-b border-gray-100 flex justify-between items-center">
+<h4 class="font-label-caps text-xs">AVAILABLE RIDERS (12)</h4>
+<span class="text-[10px] text-on-surface-variant font-mono">SYNC: 1.2S</span>
+</div>
+<div class="p-sm space-y-xs">
+<!-- Rider Row -->
+<div class="flex items-center justify-between hover:bg-surface-container p-sm transition-colors cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img alt="Rider avatar" data-alt="A clean, professional close-up of a delivery professional wearing a sleek black helmet and modern uniform. The lighting is bright and industrial, with a neutral white background. The image style is sharp and corporate, emphasizing efficiency and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRkvvosqdYXrjNifn2D5Em86qo--yDHDLxLYiQ_f6O9LbS_jWIG5qCmwXaOC9dvTL9gyrbDuFR8XVbyVHYUIv99aWIoDfZGN7G9PAPxbAH_kxzKq5-dXunhl_M1I8QquDUxqBLOv-8Fz5B8Xf6YhjNYIZ1oYx6FIg8sxnSWNn4U_qZdxDeQ0aVj4pW8sS10W_K_HSgkmn1KshzRNZ_SSGDs2rENagY-PnuDoA5PWvUPHIQw8x4zVs2c_HvuogS3Ht6szuL_0RvaGm-"/>
+</div>
+<div>
+<div class="font-body-sm font-bold">Marcus Chen</div>
+<div class="text-[10px] text-emerald-600 font-semibold">IDLE • 200M AWAY</div>
+</div>
+</div>
+<button class="px-md py-1 border border-black text-black font-label-caps text-[10px] hover:bg-black hover:text-white transition-colors">ASSIGN</button>
+</div>
+<!-- Rider Row -->
+<div class="flex items-center justify-between p-sm">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img alt="Rider avatar" data-alt="A portrait of a courier in a high-visibility, professional outfit against a modern city backdrop during daylight. The camera focus is sharp on the courier's friendly but focused expression, with a soft blur on the bustling urban environment behind. The image evokes a sense of promptness and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8LOGRfv1AGIYnlr7et2JEwjAm3kVe-8jV-EK-nIpungFy9IexVpTW4jZchjMuP1pUXcctGMz-CuuudMfcQE016bkdmbenG2TpBEO8_vJdc0vWhsFKiPMtnz9zXmrvPRK_hBUbIVOdXwhkc_d-784fc7o2h50qZwiPyHxZmI34mMkBm2yMVbEpeB4e4JXIQbmJBtjqvwY49nIwoiS7nnbYAEQwXFG9B9YweVsczgqbuNnjW3bIPAGS7uHucI6zuAz6yx_iEvQv4BhN"/>
+</div>
+<div>
+<div class="font-body-sm font-bold">Elena Rodriguez</div>
+<div class="text-[10px] text-gray-400 font-semibold">IN-TRANSIT • #ORD-8812</div>
+</div>
+</div>
+<span class="font-mono text-[10px] text-on-surface-variant">04:12 ETA</span>
+</div>
+<!-- Rider Row -->
+<div class="flex items-center justify-between p-sm">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img alt="Rider avatar" data-alt="A high-quality image of a delivery rider wearing an e-bike helmet and a minimalist grey jacket. The setting is a clean, modern street with bright morning light casting long, soft shadows. The style is fresh and contemporary, focusing on the human element of logistics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzWVFm0rCVD3u0WKOtOvtghnVPCz7tKDdkPviy_ysN93JUtUp4kGMR9JkutKZSWHOXPvHgiA90rlAhZrP6aaJ7AiUgfexETeSbI9ZoHs_-l127dsAmN6-J3dda9pN855PzIn7AT6YT1NLeI15oV4gxGS9XCEuSVgMQ01fm9zKi5-jyGKDfog8alZW-7REWso-a9HZj-TyKfcwkJqHtNS_NUc84lM0nFY6EdRF0MDY7TODITAi8arEMr0wBoUw7KbDPlDJ40EQYgp2K"/>
+</div>
+<div>
+<div class="font-body-sm font-bold">James Wilson</div>
+<div class="text-[10px] text-emerald-600 font-semibold">IDLE • 450M AWAY</div>
+</div>
+</div>
+<button class="px-md py-1 border border-black text-black font-label-caps text-[10px] hover:bg-black hover:text-white transition-colors">ASSIGN</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Logistics Metrics Section -->
+<section class="mt-xl pt-xl border-t border-gray-200">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg">
+<div class="p-lg bg-white border border-outline-variant flex flex-col justify-between">
+<span class="text-label-caps text-on-surface-variant">AVG PREP TIME</span>
+<div class="mt-md">
+<span class="text-h1 font-h1">14.2</span>
+<span class="text-label-caps text-on-surface-variant">MIN</span>
+</div>
+<div class="mt-sm flex items-center gap-xs text-[10px] font-bold text-emerald-600">
+<span class="material-symbols-outlined text-sm" data-icon="trending_down">trending_down</span> -2.1% VS LAST HR
+                        </div>
+</div>
+<div class="p-lg bg-white border border-outline-variant flex flex-col justify-between">
+<span class="text-label-caps text-on-surface-variant">FLEET UTILIZATION</span>
+<div class="mt-md">
+<span class="text-h1 font-h1">88</span>
+<span class="text-label-caps text-on-surface-variant">%</span>
+</div>
+<div class="mt-sm flex items-center gap-xs text-[10px] font-bold text-secondary">
+                            OPTIMAL RANGE
+                        </div>
+</div>
+<div class="p-lg bg-white border border-outline-variant flex flex-col justify-between">
+<span class="text-label-caps text-on-surface-variant">SUCCESSFUL HANDOFFS</span>
+<div class="mt-md">
+<span class="text-h1 font-h1">312</span>
+</div>
+<div class="mt-sm flex items-center gap-xs text-[10px] font-bold text-emerald-600">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span> 100% TODAY
+                        </div>
+</div>
+<div class="p-lg bg-white border border-outline-variant flex flex-col justify-between">
+<span class="text-label-caps text-on-surface-variant">DISSATISFACTION RATE</span>
+<div class="mt-md">
+<span class="text-h1 font-h1">0.4</span>
+<span class="text-label-caps text-on-surface-variant">%</span>
+</div>
+<div class="mt-sm flex items-center gap-xs text-[10px] font-bold text-error">
+<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span> 2 DELAYED TICKETS
+                        </div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- FAB Suppression Logic: Not rendered on dashboard to prioritize info density as per guidelines -->
+<script>
+    async function loadKitchenData() {
+        try {
+            const res = await fetch('/api/restaurant');
+            const data = await res.json();
+            const orderContainer = document.querySelector('section.flex-col.gap-md div.space-y-md');
+            if (orderContainer && data.orders) {
+                orderContainer.innerHTML = data.orders.map(o => \
+                    <div class="bg-white border border-outline p-md relative overflow-hidden">
+                        <div class="absolute left-0 top-0 h-full w-1 \"></div>
+                        <div class="flex justify-between items-start mb-sm">
+                            <div>
+                                <span class="font-label-caps text-gray-500 uppercase tracking-widest">#ORD-\</span>
+                                <h4 class="font-h3 text-md mt-xs">\ � \ Items</h4>
+                            </div>
+                            <span class="bg-gray-100 px-2 py-0.5 rounded text-[10px] uppercase font-bold">\</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-sm border-t border-gray-100">
+                            <span class="text-label-caps text-on-surface-variant">RECENT</span>
+                            <span class="font-h3 text-sm text-primary">$\</span>
+                        </div>
+                    </div>
+                \).join('') || '<p class="text-center text-gray-400 py-8">No active orders</p>';
+            }
+            const tbody = document.querySelector('tbody');
+            if (tbody && data.orders) {
+                const items = data.orders.filter(o => o.status !== 'completed').flatMap(o => (o.items || []).map(i => ({...i, orderId: o.id})));
+                tbody.innerHTML = items.map(item => \
+                    <tr>
+                        <td class="px-md py-md">
+                            <div class="font-semibold text-primary">\</div>
+                            <div class="text-[10px] text-on-surface-variant uppercase">ORD: #\</div>
+                        </td>
+                        <td class="px-md py-md font-mono text-error">ACTIVE</td>
+                        <td class="px-md py-md"><span class="material-symbols-outlined text-error">priority_high</span></td>
+                    </tr>
+                \).join('') || '<tr><td colspan="3" class="p-4 text-center">Queue Empty</td></tr>';
+            }
+        } catch(e) {}
+    }
+    loadKitchenData(); setInterval(loadKitchenData, 5000);
+</script>
+</body></html>

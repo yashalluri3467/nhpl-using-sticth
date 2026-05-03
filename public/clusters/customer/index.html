@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>VoyageCore - Customer Cluster</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3F49C1",
+                        "primary-dark": "#2E37A4",
+                        "primary-light": "rgba(63, 73, 193, 0.1)",
+                        background: "#F4F6FB",
+                        surface: "#FFFFFF",
+                        "text-dark": "#1A1A1A",
+                        "text-muted": "#7D848D",
+                        outline: "#E8EBF2"
+                    },
+                    borderRadius: {
+                        'DEFAULT': '12px',
+                        'lg': '16px',
+                        'xl': '24px',
+                        '2xl': '32px'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .tab-active { color: #3F49C1; position: relative; }
+        .tab-active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background: #3F49C1; border-radius: 99px; }
+    </style>
+</head>
+<body class="bg-background text-text-dark font-sans min-h-screen pb-20 md:pb-0">
+
+    <!-- Desktop Sidebar -->
+    <aside class="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-surface border-r border-outline flex-col p-6 z-50">
+        <div class="flex items-center gap-2 mb-10">
+            <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                <span class="material-symbols-outlined text-xl">flight_takeoff</span>
+            </div>
+            <span class="text-xl font-extrabold tracking-tight">VoyageCore</span>
+        </div>
+        <nav class="space-y-1">
+            <a href="#" onclick="showSection('dashboard')" class="nav-link flex items-center gap-3 px-4 py-3 bg-primary-light text-primary rounded-xl font-semibold">
+                <span class="material-symbols-outlined">home</span>
+                Dashboard
+            </a>
+            <a href="#" onclick="showSection('hotels')" class="nav-link flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-background rounded-xl transition-colors">
+                <span class="material-symbols-outlined">hotel</span>
+                Hotels
+            </a>
+            <a href="#" onclick="showSection('dining')" class="nav-link flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-background rounded-xl transition-colors">
+                <span class="material-symbols-outlined">restaurant</span>
+                Dining
+            </a>
+            <a href="#" onclick="showSection('trips')" class="nav-link flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-background rounded-xl transition-colors">
+                <span class="material-symbols-outlined">explore</span>
+                My Trips
+            </a>
+        </nav>
+        <div class="mt-auto pt-6 border-t border-outline">
+            <div class="flex items-center gap-3">
+                <div id="user-avatar" class="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-primary font-bold">JD</div>
+                <div>
+                    <p id="user-name" class="font-bold text-sm">John Doe</p>
+                    <p id="user-role" class="text-xs text-text-muted">Traveler</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="md:ml-64 max-w-[1200px] mx-auto p-5 md:p-10 space-y-8">
+        
+        <!-- Header -->
+        <header class="flex justify-between items-center">
+            <div>
+                <p class="text-text-muted text-sm font-medium">Welcome to 👋</p>
+                <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">NHPL Customer Portal</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="bg-surface px-4 py-2 rounded-xl border border-outline flex items-center gap-2 shadow-sm">
+                    <span class="material-symbols-outlined text-primary text-sm">account_balance_wallet</span>
+                    <span id="wallet-balance" class="font-bold text-sm">₹0.00</span>
+                </div>
+                <button class="w-10 h-10 md:w-12 md:h-12 bg-surface rounded-full flex items-center justify-center border border-outline shadow-sm hover:scale-105 transition-transform">
+                    <span class="material-symbols-outlined text-text-dark">notifications</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dynamic Sections -->
+        <div id="dashboard" class="space-y-8">
+            <!-- Hero Search -->
+            <section class="bg-surface rounded-[24px] md:rounded-[32px] p-6 md:p-8 shadow-sm border border-outline">
+                <div class="flex gap-8 mb-8 border-b border-outline">
+                    <button class="pb-3 text-sm font-bold tab-active">Travel</button>
+                    <button class="pb-3 text-sm font-bold text-text-muted">Stay</button>
+                    <button class="pb-3 text-sm font-bold text-text-muted">Dine</button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-background p-4 rounded-2xl border border-outline">
+                        <p class="text-[10px] font-extrabold text-text-muted uppercase tracking-wider mb-1">Destination</p>
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">location_on</span>
+                            <input type="text" id="destInput" placeholder="Where are you going?" class="bg-transparent border-none p-0 focus:ring-0 w-full font-bold text-text-dark"/>
+                        </div>
+                    </div>
+                    <div class="bg-background p-4 rounded-2xl border border-outline">
+                        <p class="text-[10px] font-extrabold text-text-muted uppercase tracking-wider mb-1">Date</p>
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">calendar_today</span>
+                            <input type="date" id="dateInput" class="bg-transparent border-none p-0 focus:ring-0 w-full font-bold text-text-dark"/>
+                        </div>
+                    </div>
+                    <button onclick="bookCombined()" class="md:col-span-2 bg-primary text-white py-4 rounded-xl font-bold hover:bg-primary-dark transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">rocket_launch</span>
+                        Request Combined Experience (Trip + Hotel + Meal)
+                    </button>
+                </div>
+            </section>
+
+            <!-- Featured Hotels -->
+            <section class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-extrabold tracking-tight">Featured Hotels</h2>
+                    <button class="text-primary text-sm font-bold">View All</button>
+                </div>
+                <div id="hotelList" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Loading state -->
+                    <div class="animate-pulse bg-surface h-64 rounded-2xl border border-outline"></div>
+                    <div class="animate-pulse bg-surface h-64 rounded-2xl border border-outline"></div>
+                    <div class="animate-pulse bg-surface h-64 rounded-2xl border border-outline"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Trips Section -->
+        <div id="trips" class="hidden space-y-6">
+            <h2 class="text-xl font-extrabold tracking-tight">Active Bookings</h2>
+            <div id="activeBookings" class="space-y-4">
+                <!-- Bookings will be loaded here -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Nav -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-xl border-t border-outline px-6 py-4 flex justify-between items-center z-50">
+        <button onclick="showSection('dashboard')" class="flex flex-col items-center gap-1 text-primary">
+            <span class="material-symbols-outlined text-2xl font-bold">home</span>
+            <span class="text-[10px] font-bold">Home</span>
+        </button>
+        <button onclick="showSection('trips')" class="flex flex-col items-center gap-1 text-text-muted">
+            <span class="material-symbols-outlined text-2xl font-bold">explore</span>
+            <span class="text-[10px] font-bold">Trips</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 text-text-muted">
+            <span class="material-symbols-outlined text-2xl font-bold">person</span>
+            <span class="text-[10px] font-bold">Profile</span>
+        </button>
+    </nav>
+
+    <script>
+        const API_BASE = "https://ep-patient-moon-a4h8ty8m.apirest.us-east-1.aws.neon.tech/neondb/rest/v1";
+        // NOTE: In a real app, this token comes from Neon Auth login
+        const AUTH_TOKEN = "PROTOTYPE_BYPASS"; 
+
+        async function apiFetch(path, options = {}) {
+            const headers = {
+                'Authorization': `Bearer ${AUTH_TOKEN}`,
+                'Content-Type': 'application/json',
+                ...options.headers
+            };
+            const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+            return res.json();
+        }
+
+        function showSection(id) {
+            ['dashboard', 'trips'].forEach(s => {
+                document.getElementById(s).classList.add('hidden');
+            });
+            document.getElementById(id).classList.remove('hidden');
+            
+            // Update sidebar styles
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.classList.remove('bg-primary-light', 'text-primary', 'font-semibold');
+                l.classList.add('text-text-muted');
+            });
+        }
+
+        async function loadHotels() {
+            try {
+                const hotels = await apiFetch('/hotels');
+                const list = document.getElementById('hotelList');
+                list.innerHTML = hotels.map(h => `
+                    <div class="bg-surface rounded-2xl border border-outline overflow-hidden shadow-sm hover:shadow-md transition-all">
+                        <img src="${h.images[0]}" class="w-full h-40 object-cover" alt="${h.name}"/>
+                        <div class="p-4 space-y-2">
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-bold">${h.name}</h3>
+                                <span class="bg-primary-light text-primary text-[10px] font-extrabold px-2 py-1 rounded-md">⭐ ${h.rating}</span>
+                            </div>
+                            <p class="text-xs text-text-muted line-clamp-1">${h.address}</p>
+                            <div class="flex justify-between items-center pt-2">
+                                <p class="font-extrabold text-primary">₹${h.price}<span class="text-[10px] font-medium text-text-muted">/night</span></p>
+                                <button onclick="bookHotel(${h.id})" class="text-xs font-bold bg-primary text-white px-4 py-2 rounded-lg">Book</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error("Failed to load hotels:", err);
+            }
+        }
+
+        async function bookCombined() {
+            const dest = document.getElementById('destInput').value || "Netarhat";
+            alert(`Initiating combined booking for ${dest}. Sending Inter-Cluster Requests...`);
+            
+            // This would normally be a series of API calls to different schemas
+            try {
+                const booking = await apiFetch('/customer_bookings', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        type: 'Combined',
+                        customer_name: 'John Doe',
+                        notes: `Combined trip to ${dest}`,
+                        date: document.getElementById('dateInput').value || new Date().toISOString().split('T')[0]
+                    })
+                });
+                alert(`Success! Booking ID: ${booking[0].id}. Interlinked with Hotel & Driver systems.`);
+                loadTrips();
+                showSection('trips');
+            } catch (err) {
+                alert("Booking failed. Ensure API is reachable.");
+            }
+        }
+
+        async function loadTrips() {
+            const bookings = await apiFetch('/customer_bookings?order=id.desc');
+            const list = document.getElementById('activeBookings');
+            list.innerHTML = bookings.map(b => `
+                <div class="bg-surface p-4 rounded-xl border border-outline flex justify-between items-center">
+                    <div>
+                        <p class="font-bold">${b.type} Experience</p>
+                        <p class="text-xs text-text-muted">${b.date} • ${b.status}</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">chat</span>
+                        <span class="material-symbols-outlined text-primary">location_on</span>
+                    </div>
+                </div>
+            `).join('') || '<p class="text-center text-text-muted">No active trips found.</p>';
+        }
+
+        // Initialize
+        loadHotels();
+        loadTrips();
+    </script>
+</body>
+</html>

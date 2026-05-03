@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marketplace Ops Console - Master Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3F49C1",
+                        "primary-dark": "#2E37A4",
+                        "primary-light": "rgba(63, 73, 193, 0.1)",
+                        background: "#F4F6FB",
+                        surface: "#FFFFFF",
+                        "text-dark": "#1A1A1A",
+                        "text-muted": "#7D848D",
+                        outline: "#E8EBF2"
+                    },
+                    borderRadius: {
+                        'DEFAULT': '12px',
+                        'lg': '16px',
+                        'xl': '24px'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        'body-md': ['Inter', 'sans-serif'],
+                        'h1': ['Plus Jakarta Sans', 'sans-serif'],
+                        'display': ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #FAFAFA;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 w-full px-6 sticky top-0 z-50 bg-white border-b border-gray-200">
+<div class="flex items-center gap-8">
+<span class="text-lg font-black text-black uppercase tracking-widest font-display">Marketplace Ops Console</span>
+<nav class="hidden md:flex items-center h-16 gap-6">
+<a class="text-gray-500 hover:text-black px-2 font-work-sans text-sm font-medium tracking-tight transition-colors duration-200" href="#">Hotels</a>
+<a class="text-gray-500 hover:text-black px-2 font-work-sans text-sm font-medium tracking-tight transition-colors duration-200" href="#">Dining</a>
+<a class="text-gray-500 hover:text-black px-2 font-work-sans text-sm font-medium tracking-tight transition-colors duration-200" href="#">Logistics</a>
+<a class="text-gray-500 hover:text-black px-2 font-work-sans text-sm font-medium tracking-tight transition-colors duration-200" href="#">Admin</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant bg-surface rounded text-sm w-64 focus:ring-1 focus:ring-secondary focus:border-secondary transition-all outline-none" placeholder="Search resources..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-gray-50 transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-gray-50 transition-colors">apps</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-outline-variant cursor-pointer" data-alt="A professional headshot of a senior system administrator in a high-tech corporate environment. The person has a confident expression, wearing minimalist professional attire. The background is a blurred office space with soft daylight and clean white architectural lines. The lighting is bright and crisp, emphasizing a light-mode UI aesthetic of efficiency and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-I2ZAaKV_LCD0h2FW-x_4ZBJm9-L1xCblVYW0ucLc_pHdtBJKXSL5FZSlZpaciWzyfLsO4_rxdF0AtMVvbZTXpzAnzs0imNNNr3Bka_NQcsw8rBJP6zwiT0xO-XUB03gYQYQZpcPlCyeAU9-r4NjPzmqwnAvlxojgT12umTw67DW1_q_5UiZf_TWwb6ko_UYFlXoO-yb4jQ7hRA-LZg0JGGuehV9QfYV4WlpT2ldTyU6UpNC6GNPGNDtV4eN4C_SyPBrWii4DcKg4"/>
+</div>
+</header>
+<div class="flex h-[calc(100vh-64px)] overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-full w-64 border-r border-gray-200 bg-white z-40">
+<div class="p-6">
+<h2 class="text-xl font-bold text-black font-h2">Master Control</h2>
+<p class="text-[10px] text-outline font-label-caps uppercase tracking-wider mt-1">Global Overview</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="bg-gray-50 border-l-4 border-black text-black flex items-center py-3 px-4 transition-all duration-150 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-xs">Global KPIs</span>
+</a>
+<a class="text-gray-500 flex items-center py-3 px-4 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="handshake">handshake</span>
+<span class="font-label-caps text-xs">Partner Directory</span>
+</a>
+<a class="text-gray-500 flex items-center py-3 px-4 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="view_list">view_list</span>
+<span class="font-label-caps text-xs">Service Queues</span>
+</a>
+<a class="text-gray-500 flex items-center py-3 px-4 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-caps text-xs">Inventory Control</span>
+</a>
+<a class="text-gray-500 flex items-center py-3 px-4 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="local_shipping">local_shipping</span>
+<span class="font-label-caps text-xs">Logistics Feed</span>
+</a>
+            <a href="#" id="nav-settings" class="text-gray-500 flex items-center py-3 px-4 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out hover:translate-x-1">
+                <span class="material-symbols-outlined mr-3">settings_suggest</span>
+                <span class="font-label-caps text-xs">System Settings</span>
+            </a>
+            <a href="#" id="nav-webhooks" class="text-gray-500 flex items-center py-3 px-4 hover:bg-gray-50 hover:text-black transition-all duration-150 ease-in-out hover:translate-x-1">
+                <span class="material-symbols-outlined mr-3">webhook</span>
+                <span class="font-label-caps text-xs">Webhooks</span>
+            </a>
+</nav>
+<div class="p-4 border-t border-gray-200">
+<button class="w-full bg-black text-white py-3 rounded text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+                    Export Reports
+                </button>
+</div>
+<div class="px-4 py-6 space-y-1">
+<a class="text-gray-500 flex items-center py-2 px-4 hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="help">help</span>
+<span class="font-label-caps text-xs">Help Center</span>
+</a>
+<a class="text-gray-500 flex items-center py-2 px-4 hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="description">description</span>
+<span class="font-label-caps text-xs">Documentation</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto p-8">
+<div class="max-w-7xl mx-auto space-y-xl">
+<!-- Header & Hero Summary -->
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-h1 text-h1 text-on-surface">Platform Control Center</h1>
+<p class="text-on-surface-variant font-body-md mt-1">Real-time oversight of global marketplace operations and partner health.</p>
+</div>
+<div class="flex gap-3">
+<div class="px-4 py-2 bg-white border border-outline-variant flex items-center gap-2">
+<span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+<span class="text-xs font-label-caps">System Live: 99.98% Uptime</span>
+</div>
+</div>
+</div>
+<!-- KPI Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-white border border-gray-200 p-lg col-span-1 md:col-span-2">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-label-caps text-outline uppercase">Total Platform Revenue</span>
+<span class="text-emerald-600 bg-emerald-50 px-2 py-1 text-[10px] font-bold">+12.4%</span>
+</div>
+<div class="text-display font-display leading-none">$4,822,190</div>
+<div class="mt-8 h-24 flex items-end gap-1">
+<div class="flex-1 bg-gray-100 h-[40%]"></div>
+<div class="flex-1 bg-gray-100 h-[60%]"></div>
+<div class="flex-1 bg-gray-100 h-[55%]"></div>
+<div class="flex-1 bg-gray-100 h-[80%]"></div>
+<div class="flex-1 bg-gray-100 h-[70%]"></div>
+<div class="flex-1 bg-black h-[100%]"></div>
+</div>
+</div>
+<div class="bg-white border border-gray-200 p-lg">
+<span class="text-xs font-label-caps text-outline uppercase block mb-2">Active Partners</span>
+<div class="text-h1 font-h1">1,248</div>
+<p class="text-xs text-on-surface-variant mt-4">84 currently onboarding</p>
+<div class="mt-6 flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-white" data-alt="Portrait of a smiling hotel manager in a professional setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8JovsFckN20C_rL67Gb32bJhW3nYnn_UbBP6dPutwD6Vox5M4dR7NTehikVo1KTFlESi8zoA2K2O-y2QQMZXkNv-be4kpOLtrk5AWD9OwJ5CRvES3mG27O2Tb73azuZ_3NHY0EYVQaqMURQ3QMLQMmtIESHAvsSt4cnkuc43-dnF-lc8nhCAMg266L0ffmbOHBQBAvfHytl5tzkvNe12mNNmhbuX49mhdq9fz0J7FwcSv-7ql6w9cWpmWLyyg2xG3_3WUMJfyod3Z"/>
+<img class="w-8 h-8 rounded-full border-2 border-white" data-alt="Close up of a delivery driver wearing a branded logistic uniform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWr30B70Q7OK3HD-mL83rdshTOYRgqCoYKyaATL-KiXuPzXUPmhPSLo9IyaoTj1DQXX03tOneR9usVPJRNcbX3n0naOXc2_PmpCOEPC1-j4IBKePTjQKMR9LY-QIRhuvpsiTpWgEDm3awO0UnDaxgVFKF0KaL-PoQpqUMRN170A33HrsLyjGS5JgBrMiKGryfh1vL3QWJsflFN3GeFvBBZxwKZlu7aJF-zlZXnZcpOI6NQiaNb8dS3wHEQ-eSPx6xMOmrtLZCyRkXr"/>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-[10px] font-bold">+79</div>
+</div>
+</div>
+<div class="bg-white border border-gray-200 p-lg">
+<span class="text-xs font-label-caps text-outline uppercase block mb-2">System Health</span>
+<div class="flex items-center gap-2 mb-4">
+<div class="text-h1 font-h1">Optimal</div>
+<span class="material-symbols-outlined text-emerald-500" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-xs">
+<span class="text-outline">API Latency</span>
+<span class="font-bold">42ms</span>
+</div>
+<div class="w-full bg-gray-100 h-1">
+<div class="bg-black h-1 w-[85%]"></div>
+</div>
+<div class="flex justify-between text-xs pt-1">
+<span class="text-outline">Error Rate</span>
+<span class="font-bold">0.02%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Partner Oversight -->
+<div class="lg:col-span-2 bg-white border border-gray-200">
+<div class="p-lg border-b border-gray-200 flex justify-between items-center">
+<h3 class="font-h3 text-h3">Partner Oversight</h3>
+<button class="text-xs font-label-caps text-secondary underline">View All Directory</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-lg py-3 text-label-caps text-outline uppercase">Partner Name</th>
+<th class="px-lg py-3 text-label-caps text-outline uppercase">Sector</th>
+<th class="px-lg py-3 text-label-caps text-outline uppercase">Metric (YTD)</th>
+<th class="px-lg py-3 text-label-caps text-outline uppercase">Status</th>
+<th class="px-lg py-3"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200">
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-lg py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-gray-900 rounded flex items-center justify-center text-white text-[10px] font-bold">L-P</div>
+<div>
+<div class="text-sm font-bold">Luxe Plaza Hotel</div>
+<div class="text-[10px] text-outline">ID: HP-90210</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-4">
+<span class="text-xs font-medium">Hotels</span>
+</td>
+<td class="px-lg py-4">
+<div class="text-sm font-bold">$124.5k</div>
+<div class="text-[10px] text-emerald-600">88% Occupancy</div>
+</td>
+<td class="px-lg py-4">
+<span class="px-2 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase rounded">Verified</span>
+</td>
+<td class="px-lg py-4 text-right">
+<button class="material-symbols-outlined text-outline hover:text-black">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-lg py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white text-[10px] font-bold">S-E</div>
+<div>
+<div class="text-sm font-bold">Swift Express</div>
+<div class="text-[10px] text-outline">ID: DR-4412</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-4">
+<span class="text-xs font-medium">Logistics</span>
+</td>
+<td class="px-lg py-4">
+<div class="text-sm font-bold">4,201</div>
+<div class="text-[10px] text-on-surface-variant">Avg 14m/delivery</div>
+</td>
+<td class="px-lg py-4">
+<span class="px-2 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase rounded">Active</span>
+</td>
+<td class="px-lg py-4 text-right">
+<button class="material-symbols-outlined text-outline hover:text-black">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors border-l-2 border-error">
+<td class="px-lg py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-amber-600 rounded flex items-center justify-center text-white text-[10px] font-bold">B-B</div>
+<div>
+<div class="text-sm font-bold">Bistro Bridge</div>
+<div class="text-[10px] text-outline">ID: RT-8821</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-4">
+<span class="text-xs font-medium">Dining</span>
+</td>
+<td class="px-lg py-4">
+<div class="text-sm font-bold">$12.2k</div>
+<div class="text-[10px] text-error font-medium">Compliance Warning</div>
+</td>
+<td class="px-lg py-4">
+<span class="px-2 py-1 bg-error-container text-on-error-container text-[10px] font-bold uppercase rounded">Auditing</span>
+</td>
+<td class="px-lg py-4 text-right">
+<button class="material-symbols-outlined text-outline hover:text-black">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Critical Actions Panel -->
+<div class="space-y-gutter">
+<div class="bg-black text-white p-lg">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+<h3 class="font-h3 text-h3">Critical Actions</h3>
+</div>
+<p class="text-xs text-gray-400 mb-6">Immediate overrides and broadcast controls for platform-wide events.</p>
+<div class="space-y-3">
+<button class="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white py-3 rounded text-xs font-bold uppercase tracking-wider flex items-center justify-between px-4 transition-colors">
+                                    Broadcast Alert
+                                    <span class="material-symbols-outlined text-sm">campaign</span>
+</button>
+<button class="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white py-3 rounded text-xs font-bold uppercase tracking-wider flex items-center justify-between px-4 transition-colors">
+                                    Global Freeze
+                                    <span class="material-symbols-outlined text-sm">lock</span>
+</button>
+<button class="w-full bg-error text-white py-3 rounded text-xs font-bold uppercase tracking-wider flex items-center justify-between px-4 hover:bg-red-700 transition-colors mt-4">
+                                    Emergency Override
+                                    <span class="material-symbols-outlined text-sm">bolt</span>
+</button>
+</div>
+</div>
+<!-- System Feed -->
+<div class="bg-white border border-gray-200 p-lg">
+<h4 class="font-label-caps text-xs text-outline uppercase mb-4">Master Feed</h4>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="mt-1 w-1.5 h-1.5 bg-black rounded-full shrink-0"></div>
+<div>
+<p class="text-xs font-bold">New Partner Onboarded</p>
+<p class="text-[10px] text-outline mt-1">Starlight Residences completed KYC verification.</p>
+<p class="text-[9px] text-on-surface-variant font-label-caps mt-1">2 MIN AGO</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="mt-1 w-1.5 h-1.5 bg-amber-500 rounded-full shrink-0"></div>
+<div>
+<p class="text-xs font-bold">Latency Spike: Region EU-W</p>
+<p class="text-[10px] text-outline mt-1">Monitoring automated failover protocols.</p>
+<p class="text-[9px] text-on-surface-variant font-label-caps mt-1">14 MIN AGO</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="mt-1 w-1.5 h-1.5 bg-black rounded-full shrink-0"></div>
+<div>
+<p class="text-xs font-bold">Scheduled Maintenance</p>
+<p class="text-[10px] text-outline mt-1">DB optimization scheduled for 02:00 GMT.</p>
+<p class="text-[9px] text-on-surface-variant font-label-caps mt-1">1 HOUR AGO</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+            <!-- Webhook Management Section (Hidden by default) -->
+            <div id="webhook-section" class="hidden space-y-gutter">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold">Webhook Subscriptions</h2>
+                    <button onclick="document.getElementById('new-webhook-modal').classList.remove('hidden')" class="bg-black text-white px-6 py-2 rounded font-bold text-sm">Create Subscription</button>
+                </div>
+
+                <div class="bg-white border border-gray-200">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-xs font-bold text-outline uppercase">Target URL</th>
+                                    <th class="px-6 py-3 text-xs font-bold text-outline uppercase">Events</th>
+                                    <th class="px-6 py-3 text-xs font-bold text-outline uppercase">Status</th>
+                                    <th class="px-6 py-3 text-xs font-bold text-outline uppercase">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="webhook-list" class="divide-y divide-gray-200">
+                                <!-- Loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 p-6">
+                    <h3 class="font-bold mb-4">Recent Deliveries</h3>
+                    <div id="delivery-logs" class="space-y-2 text-xs font-mono">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div id="new-webhook-modal" class="hidden fixed inset-0 bg-black/50 z-[100] flex items-center justify-center">
+        <div class="bg-white w-full max-w-md p-8 rounded-xl shadow-2xl">
+            <h3 class="text-xl font-bold mb-6">New Webhook</h3>
+            <form id="webhook-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">Target URL</label>
+                    <input type="url" name="target_url" required class="w-full border-gray-200 rounded p-2" placeholder="https://api.yourdomain.com/webhooks"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">Events (Comma separated or * for all)</label>
+                    <input type="text" name="events" required class="w-full border-gray-200 rounded p-2" placeholder="hotel.*, restaurant.order.created"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">Secret Key</label>
+                    <input type="text" name="secret" required class="w-full border-gray-200 rounded p-2" placeholder="signing_secret_..."/>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="button" onclick="document.getElementById('new-webhook-modal').classList.add('hidden')" class="flex-1 border border-gray-200 py-3 rounded font-bold">Cancel</button>
+                    <button type="submit" class="flex-1 bg-black text-white py-3 rounded font-bold">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        const navWebhooks = document.getElementById('nav-webhooks');
+        const kpiGrid = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-4');
+        const overviewSection = document.querySelector('.grid.grid-cols-1.lg\\:grid-cols-3');
+        const mapSection = document.querySelector('.bg-white.border.border-gray-200.p-lg:last-child');
+        const webhookSection = document.getElementById('webhook-section');
+
+        navWebhooks.addEventListener('click', (e) => {
+            e.preventDefault();
+            kpiGrid.classList.add('hidden');
+            overviewSection.classList.add('hidden');
+            if (mapSection) mapSection.classList.add('hidden');
+            webhookSection.classList.remove('hidden');
+            
+            // Highlight active nav
+            document.querySelectorAll('aside nav a').forEach(a => {
+                a.classList.remove('bg-gray-50', 'border-l-4', 'border-black', 'text-black');
+                a.classList.add('text-gray-500');
+            });
+            navWebhooks.classList.add('bg-gray-50', 'border-l-4', 'border-black', 'text-black');
+            navWebhooks.classList.remove('text-gray-500');
+            
+            loadWebhooks();
+        });
+
+        async function loadWebhooks() {
+            try {
+                const res = await fetch('/api/admin/webhooks');
+                const data = await res.json();
+                
+                const list = document.getElementById('webhook-list');
+                list.innerHTML = data.subscriptions.map(s => `
+                    <tr>
+                        <td class="px-6 py-4 text-sm font-medium">${s.target_url}</td>
+                        <td class="px-6 py-4"><div class="flex flex-wrap gap-1">${s.events.map(e => `<span class="bg-gray-100 px-2 py-0.5 rounded text-[10px]">${e}</span>`).join('')}</div></td>
+                        <td class="px-6 py-4"><span class="px-2 py-1 ${s.active ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-700'} text-[10px] font-bold uppercase rounded">${s.active ? 'Active' : 'Disabled'}</span></td>
+                        <td class="px-6 py-4">
+                            <button onclick="testWebhook(${s.id})" class="text-xs font-bold text-primary hover:underline">Test</button>
+                        </td>
+                    </tr>
+                `).join('');
+
+                const logs = document.getElementById('delivery-logs');
+                logs.innerHTML = data.deliveries.map(d => `
+                    <div class="flex justify-between items-center p-2 border-b border-gray-50">
+                        <span class="${d.status_code >= 200 && d.status_code < 300 ? 'text-emerald-600' : 'text-red-600'}">[${d.status_code || 'ERR'}]</span>
+                        <span class="flex-1 px-4 truncate">${d.event_type}</span>
+                        <span class="text-gray-400">${new Date(d.last_attempt).toLocaleTimeString()}</span>
+                    </div>
+                `).join('');
+            } catch (err) { console.error(err); }
+        }
+
+        document.getElementById('webhook-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const body = {
+                target_url: formData.get('target_url'),
+                events: formData.get('events').split(',').map(e => e.trim()),
+                secret: formData.get('secret')
+            };
+            
+            await fetch('/api/admin/webhooks', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+            
+            document.getElementById('new-webhook-modal').classList.add('hidden');
+            loadWebhooks();
+        });
+
+        async function testWebhook(id) {
+            await fetch('/api/admin/webhooks/test', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ subscription_id: id })
+            });
+            setTimeout(loadWebhooks, 500);
+        }
+    </script>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f9;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#cfc4c5",
+                        "surface-dim": "#dadada",
+                        "outline": "#7e7576",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "secondary": "#4b41e1",
+                        "on-primary-container": "#848484",
+                        "tertiary-fixed": "#6ffbbe",
+                        "tertiary-container": "#002113",
+                        "secondary-fixed": "#e2dfff",
+                        "surface-tint": "#5e5e5e",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-bright": "#f9f9f9",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#645efb",
+                        "on-primary-fixed-variant": "#474747",
+                        "surface": "#f9f9f9",
+                        "on-secondary-container": "#fffbff",
+                        "on-surface": "#1a1c1c",
+                        "on-surface-variant": "#4c4546",
+                        "tertiary": "#000000",
+                        "inverse-surface": "#2f3131",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f3f3f3",
+                        "on-secondary-fixed-variant": "#3323cc",
+                        "on-secondary-fixed": "#0f0069",
+                        "on-tertiary-container": "#009668",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-fixed": "#1b1b1b",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary-fixed": "#002113",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-background": "#1a1c1c",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "primary-container": "#1b1b1b",
+                        "primary": "#000000",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#c6c6c6",
+                        "background": "#f9f9f9",
+                        "primary-fixed": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "1.5rem",
+                        "sm": "0.5rem",
+                        "md": "1rem",
+                        "xs": "0.25rem",
+                        "xl": "2.5rem",
+                        "margin": "2rem",
+                        "gutter": "1rem",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h3": ["Work Sans"],
+                        "h2": ["Work Sans"],
+                        "h1": ["Work Sans"],
+                        "label-md": ["Inter"],
+                        "display": ["Work Sans"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-sm": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h3": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["13px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body-md text-on-surface bg-background min-h-screen">
+<!-- TopAppBar Shell -->
+<header class="flex justify-between items-center h-16 w-full px-6 sticky top-0 z-50 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
+<div class="flex items-center gap-8">
+<div class="text-lg font-black text-black dark:text-white uppercase tracking-widest font-work-sans">Marketplace Ops Console</div>
+<nav class="hidden md:flex items-center h-full gap-4">
+<a class="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white px-2 font-work-sans text-sm font-medium tracking-tight transition-colors duration-200" href="#">Hotels</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white px-2 font-work-sans text-sm font-medium tracking-tight transition-colors duration-200" href="#">Dining</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white px-2 font-work-sans text-sm font-medium tracking-tight transition-colors duration-200" href="#">Logistics</a>
+<a class="text-black dark:text-white border-b-2 border-black dark:border-white h-full flex items-center px-2 font-work-sans text-sm font-medium tracking-tight" href="#">Admin</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center bg-surface-container px-3 py-1.5 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-outline text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-outline-variant" placeholder="Search operations..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-gray-50 dark:hover:bg-gray-900 cursor-pointer active:opacity-70 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-50 dark:hover:bg-gray-900 cursor-pointer active:opacity-70 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A professional male administrator profile headshot in high-key studio lighting with a neutral gray background. The lighting is crisp and modern, creating a clean light-mode aesthetic that fits a corporate environment. The image uses a monochromatic palette with subtle warm skin tones, emphasizing clarity and trustworthiness in a professional hotel management context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsV307vXtvSt4oUDSF1E-othnse5QTRwHCCAYKqQdj3JMYSrXS7KlgjYpeJeXxJUGjQ8Xw1irLGZ9Qrwu0TU1v4HkaLzgNHuHuyJ-9HrET3WZAmiu_AiyAi3D5NxvaTJT2mm81PyQ55sIMMfzZUW-x2Sw-8QMXTAK8n9cDMSfoQmMBqZaEDLaJN1IwrRaZtZOuO8dscAW7IOuhitIgF2qdA11Il3j4kQyxyyRcK06l1M9JCwXtv0cBn7oRGgO1JELzIAptqk630M7w"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="flex flex-col h-screen w-64 border-r border-gray-200 dark:border-gray-800 fixed left-0 top-0 z-40 bg-white dark:bg-gray-950 pt-20">
+<div class="px-6 mb-8">
+<div class="text-xl font-bold text-black dark:text-white font-work-sans">Master Control</div>
+<div class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Global Overview</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-gray-500 dark:text-gray-400 flex items-center py-3 px-6 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white transition-all duration-150 ease-in-out hover:translate-x-1 font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="analytics">analytics</span>
+                Global KPIs
+            </a>
+<a class="bg-gray-50 dark:bg-gray-900 border-l-4 border-black dark:border-white text-black dark:text-white flex items-center py-3 px-6 font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="view_list">view_list</span>
+                Service Queues
+            </a>
+<a class="text-gray-500 dark:text-gray-400 flex items-center py-3 px-6 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white transition-all duration-150 ease-in-out hover:translate-x-1 font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="handshake">handshake</span>
+                Partner Directory
+            </a>
+<a class="text-gray-500 dark:text-gray-400 flex items-center py-3 px-6 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white transition-all duration-150 ease-in-out hover:translate-x-1 font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="inventory_2">inventory_2</span>
+                Inventory Control
+            </a>
+<a class="text-gray-500 dark:text-gray-400 flex items-center py-3 px-6 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white transition-all duration-150 ease-in-out hover:translate-x-1 font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="local_shipping">local_shipping</span>
+                Logistics Feed
+            </a>
+<a class="text-gray-500 dark:text-gray-400 flex items-center py-3 px-6 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white transition-all duration-150 ease-in-out hover:translate-x-1 font-work-sans text-xs font-semibold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="settings_suggest">settings_suggest</span>
+                System Settings
+            </a>
+</nav>
+<div class="p-6 mt-auto space-y-2 border-t border-gray-100">
+<a class="text-gray-400 flex items-center py-2 text-[10px] uppercase font-bold hover:text-black" href="#">
+<span class="material-symbols-outlined text-[16px] mr-2" data-icon="help">help</span>
+                Help Center
+            </a>
+<a class="text-gray-400 flex items-center py-2 text-[10px] uppercase font-bold hover:text-black" href="#">
+<span class="material-symbols-outlined text-[16px] mr-2" data-icon="description">description</span>
+                Documentation
+            </a>
+<button class="w-full mt-4 bg-black text-white text-[10px] font-bold uppercase tracking-widest py-3 rounded hover:bg-gray-800 transition-colors">
+                Export Reports
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-6 p-margin max-w-[1600px]">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h1 class="font-h1 text-h1 text-on-surface">Hotel Operations Command</h1>
+<p class="font-body-md text-body-md text-outline mt-1">Real-time status monitoring for Grand Metropolis Central.</p>
+</div>
+<div class="flex gap-md">
+<div class="flex flex-col items-end">
+<span class="font-label-caps text-label-caps text-outline mb-1">OCCUPANCY RATE</span>
+<span class="font-h2 text-h2 text-primary">84.2%</span>
+</div>
+<div class="w-[1px] bg-outline-variant h-10 mx-2"></div>
+<div class="flex flex-col items-end">
+<span class="font-label-caps text-label-caps text-outline mb-1">AVG RESPONSE TIME</span>
+<span class="font-h2 text-h2 text-secondary">4m 12s</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Room Map Section (Center Main) -->
+<section class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-lg p-lg">
+<div class="flex justify-between items-center mb-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="grid_view">grid_view</span>
+<h2 class="font-h3 text-h3">Visual Room Map</h2>
+</div>
+<div class="flex gap-md text-[10px] font-bold uppercase tracking-tighter">
+<div class="flex items-center gap-xs"><span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span> Clean</div>
+<div class="flex items-center gap-xs"><span class="w-2 h-2 rounded-full bg-secondary-container"></span> Occupied</div>
+<div class="flex items-center gap-xs"><span class="w-2 h-2 rounded-full bg-error"></span> Maintenance</div>
+<div class="flex items-center gap-xs"><span class="w-2 h-2 rounded-full bg-outline-variant"></span> Dirty</div>
+</div>
+</div>
+<div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-sm">
+<!-- Repeated Room Logic -->
+<!-- Row 1 -->
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">101</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">102</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">103</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="aspect-square bg-error-container border border-error rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50 text-error">104</span>
+<span class="material-symbols-outlined text-error text-lg" data-icon="construction">construction</span>
+</div>
+<div class="aspect-square bg-surface-container border border-outline-variant rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">105</span>
+<span class="material-symbols-outlined text-outline text-lg" data-icon="cleaning_services">cleaning_services</span>
+</div>
+<!-- Row 2 -->
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">201</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">202</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">203</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">204</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">205</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<!-- Filler rooms to fill the grid -->
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">301</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">302</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">303</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-error-container border border-error rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50 text-error">304</span>
+<span class="material-symbols-outlined text-error text-lg" data-icon="construction">construction</span>
+</div>
+<div class="aspect-square bg-surface-container border border-outline-variant rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">305</span>
+<span class="material-symbols-outlined text-outline text-lg" data-icon="cleaning_services">cleaning_services</span>
+</div>
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">401</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">402</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">403</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">404</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-surface-container border border-outline-variant rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">405</span>
+<span class="material-symbols-outlined text-outline text-lg" data-icon="cleaning_services">cleaning_services</span>
+</div>
+<!-- Row 5 -->
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">501</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">502</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">503</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="aspect-square bg-error-container border border-error rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50 text-error">504</span>
+<span class="material-symbols-outlined text-error text-lg" data-icon="construction">construction</span>
+</div>
+<div class="aspect-square bg-surface-container border border-outline-variant rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">505</span>
+<span class="material-symbols-outlined text-outline text-lg" data-icon="cleaning_services">cleaning_services</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">601</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">602</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">603</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-tertiary-fixed/20 border border-on-tertiary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">604</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="aspect-square bg-secondary-container/10 border border-secondary-container rounded p-xs flex flex-col justify-between">
+<span class="text-[9px] font-bold opacity-50">605</span>
+<span class="material-symbols-outlined text-secondary-container text-lg" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+</div>
+</section>
+<!-- Service Queue Section (Right Column) -->
+<section class="col-span-12 lg:col-span-4 bg-white border border-outline-variant rounded-lg flex flex-col h-[500px]">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="pending_actions">pending_actions</span>
+<h2 class="font-h3 text-h3">Service Queue</h2>
+</div>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded">12 OPEN</span>
+</div>
+<div class="flex-1 overflow-y-auto">
+<!-- Queue Item 1 -->
+<div class="p-md border-b border-outline-variant hover:bg-surface-container transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="font-label-caps text-[10px] text-secondary">ROOM 402 • F&amp;B</span>
+<h4 class="font-label-md text-label-md mt-1">Late Night Room Service (Dinner)</h4>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-error font-bold text-xs">08:12</span>
+<span class="text-[8px] text-outline uppercase">SLA OVER</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white bg-surface-container overflow-hidden">
+<img alt="Chef Avatar" class="w-full h-full object-cover" data-alt="Close-up of a kitchen staff member wearing a professional white chef uniform. High-quality commercial kitchen lighting creates a sharp, clean aesthetic. The style is modern and focused, representing the culinary operations of the hotel with professional clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUi-Hyl6af_W9LqlGCGpio-QgsSqUer-VVBILVdaWi2nKxKIOAONvzT16VmAgT8vZlJCEoREbO-7y4GErg2MuVQ8ML7QEXbJOdzoV-tqSU4Nef52zJ5juhUsmby6g_hlRx5Mv51-vpsYTw_m7MeQyg854FxYnLq9-obk3bCS9xA9yUColVJW-ScAzZHtNEIMRqSK10_2OpoUWRkULYF40laKtD1hJqnNvgOvSvtEsppqKJpam-gvLemxTJWhdvpMH5aveoAaudIvYM"/>
+</div>
+</div>
+<button class="text-xs font-bold uppercase tracking-widest text-primary border border-primary px-3 py-1 rounded hover:bg-black hover:text-white transition-colors">Assign</button>
+</div>
+</div>
+<!-- Queue Item 2 -->
+<div class="p-md border-b border-outline-variant hover:bg-surface-container transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="font-label-caps text-[10px] text-on-tertiary-container">ROOM 103 • HOUSEKEEPING</span>
+<h4 class="font-label-md text-label-md mt-1">Extra Towels &amp; Linens</h4>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-on-tertiary-container font-bold text-xs">03:45</span>
+<span class="text-[8px] text-outline uppercase">IN SLA</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-outline italic">Assigned to: Maria S.</span>
+<button class="text-xs font-bold uppercase tracking-widest text-on-tertiary-container border border-on-tertiary-container px-3 py-1 rounded hover:bg-on-tertiary-container hover:text-white transition-colors">Done</button>
+</div>
+</div>
+<!-- Queue Item 3 -->
+<div class="p-md border-b border-outline-variant hover:bg-surface-container transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="font-label-caps text-[10px] text-error">ROOM 205 • MAINTENANCE</span>
+<h4 class="font-label-md text-label-md mt-1">HVAC Unit Leakage</h4>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-error font-bold text-xs">15:30</span>
+<span class="text-[8px] text-outline uppercase">CRITICAL</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-error" data-icon="warning">warning</span>
+<span class="text-[10px] text-error font-medium">High Priority</span>
+</div>
+<button class="text-xs font-bold uppercase tracking-widest text-error border border-error px-3 py-1 rounded hover:bg-error hover:text-white transition-colors">Escalate</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Arrivals/Departures (Bottom Full Width) -->
+<section class="col-span-12 bg-white border border-outline-variant rounded-lg overflow-hidden">
+<div class="flex border-b border-outline-variant">
+<button class="flex-1 py-4 font-label-caps text-label-caps border-b-2 border-black bg-surface-container-lowest">ARRIVALS (24)</button>
+<button class="flex-1 py-4 font-label-caps text-label-caps text-outline hover:bg-surface-container transition-colors">DEPARTURES (18)</button>
+<button class="flex-1 py-4 font-label-caps text-label-caps text-outline hover:bg-surface-container transition-colors">IN-HOUSE GUESTS (142)</button>
+</div>
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="p-md font-label-caps text-[10px] text-outline uppercase">Guest Name</th>
+<th class="p-md font-label-caps text-[10px] text-outline uppercase text-center">Room Type</th>
+<th class="p-md font-label-caps text-[10px] text-outline uppercase text-center">ETA</th>
+<th class="p-md font-label-caps text-[10px] text-outline uppercase text-center">Status</th>
+<th class="p-md font-label-caps text-[10px] text-outline uppercase text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-xs">JD</div>
+<div>
+<div class="font-label-md text-label-md">Jonathan Davies</div>
+<div class="text-[10px] text-outline">Gold Member • #RSV9921</div>
+</div>
+</div>
+</td>
+<td class="p-md text-center">
+<span class="px-2 py-0.5 bg-outline-variant/20 rounded text-[10px] font-bold">EXECUTIVE SUITE</span>
+</td>
+<td class="p-md text-center font-bold text-xs">14:30</td>
+<td class="p-md text-center">
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold rounded">ROOM READY</span>
+</td>
+<td class="p-md text-right">
+<button class="bg-black text-white px-4 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest">Check In</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-primary flex items-center justify-center font-bold text-xs">EL</div>
+<div>
+<div class="font-label-md text-label-md">Elena Rodriguez</div>
+<div class="text-[10px] text-outline">Regular • #RSV9944</div>
+</div>
+</div>
+</td>
+<td class="p-md text-center">
+<span class="px-2 py-0.5 bg-outline-variant/20 rounded text-[10px] font-bold">DELUXE KING</span>
+</td>
+<td class="p-md text-center font-bold text-xs">15:15</td>
+<td class="p-md text-center">
+<span class="px-2 py-0.5 bg-surface-container-highest text-outline text-[10px] font-bold rounded">IN CLEANING</span>
+</td>
+<td class="p-md text-right">
+<button class="border border-outline text-outline px-4 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest opacity-50 cursor-not-allowed">Wait</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-xs">MM</div>
+<div>
+<div class="font-label-md text-label-md">Marcus Miller</div>
+<div class="text-[10px] text-outline">VIP • #RSV9950</div>
+</div>
+</div>
+</td>
+<td class="p-md text-center">
+<span class="px-2 py-0.5 bg-outline-variant/20 rounded text-[10px] font-bold">PENTHOUSE</span>
+</td>
+<td class="p-md text-center font-bold text-xs">16:00</td>
+<td class="p-md text-center">
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold rounded">ROOM READY</span>
+</td>
+<td class="p-md text-right">
+<button class="bg-black text-white px-4 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest">Check In</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-md bg-surface-container-lowest border-t border-outline-variant flex justify-center">
+<button class="text-[10px] font-bold uppercase tracking-widest text-outline hover:text-primary transition-colors flex items-center gap-xs">
+                        View Full Guest Manifest <span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Action Button for Emergency/Quick Tasks -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-black text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</body></html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3F49C1",
+                        "primary-dark": "#2E37A4",
+                        "primary-light": "rgba(63, 73, 193, 0.1)",
+                        background: "#F4F6FB",
+                        surface: "#FFFFFF",
+                        "text-dark": "#1A1A1A",
+                        "text-muted": "#7D848D",
+                        outline: "#E8EBF2"
+                    },
+                    borderRadius: {
+                        'DEFAULT': '12px',
+                        'lg': '16px',
+                        'xl': '24px'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        'body-md': ['Inter', 'sans-serif'],
+                        'h1': ['Plus Jakarta Sans', 'sans-serif'],
+                        'display': ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #FAFAFA;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background antialiased overflow-x-hidden">
+<!-- Sidebar Navigation Shell -->
+<aside class="flex flex-col h-full py-4 gap-2 bg-[#FAFAFA] dark:bg-gray-900 text-black dark:text-white font-['Work_Sans'] text-sm font-medium h-screen w-64 border-r fixed left-0 top-0 border-r border-gray-200 dark:border-gray-800 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-lg font-black text-black dark:text-white">Control Center</h1>
+<p class="text-xs text-on-primary-container">Master Admin</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-6 py-3 bg-white dark:bg-gray-800 text-black dark:text-white border-l-2 border-indigo-600 shadow-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center px-6 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center px-6 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">receipt_long</span>
+                Operations
+            </a>
+<a class="flex items-center px-6 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">local_shipping</span>
+                Logistics
+            </a>
+<a class="flex items-center px-6 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+                Revenue
+            </a>
+<a class="flex items-center px-6 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+                Teams
+            </a>
+</nav>
+<div class="px-4 mt-auto mb-4">
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded-lg font-label-md flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">add_chart</span>
+                Generate Report
+            </button>
+</div>
+<div class="border-t border-gray-200 dark:border-gray-800 pt-4">
+<a class="flex items-center px-6 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">contact_support</span>
+                Support
+            </a>
+<a class="flex items-center px-6 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">logout</span>
+                Sign Out
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-margin">
+<!-- Header / Top Bar -->
+<header class="flex justify-between items-center mb-xl">
+<div>
+<h1 class="font-h1 text-h1 text-primary">Front Desk Dashboard</h1>
+<p class="font-body-md text-on-primary-container">OmniMarket Hotel Management Portal — Central Hub</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+</div>
+<img alt="User avatar" class="w-10 h-10 rounded-full border border-outline-variant" data-alt="A professional headshot of a hotel manager in a sharp charcoal suit. The background is a blurred high-end hotel lobby with warm, amber accent lighting. The overall visual style is crisp, clean, and highly professional, utilizing a balanced color palette of soft neutrals and professional tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0QWcm96UAFceeeAoHVFrl0lEG8X8efIEBtZQK3J8Hl9cU8GLqctqbKWCAtWtCrDDY5rlOibYPZ88yyNy4FuW_kTRc1a4FdIIX8s9xAOi_-XgPTOGALaaWJD9GSLANk4Z0gZfGV3HrYxqNzaJZSEM_ueSLJLUOfiQwJHH63gI2n0zKYmtQryVAwBm4yTBXgvdWi7BWmXT9T4YUZyBZB1Gk6ql4nJnzDKisCBORW8L-SBAznHmmmSNRRwp5LYWDU0UTdamXJn7shTSl"/>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Key Metrics (KPIs) -->
+<div class="col-span-12 lg:col-span-3 space-y-lg">
+<div class="bg-white border border-gray-200 p-lg rounded-xl shadow-sm">
+<p class="font-label-caps text-label-caps text-on-primary-container mb-xs">OCCUPANCY RATE</p>
+<div class="flex items-end justify-between">
+<h2 class="font-display text-display text-primary">84%</h2>
+<span class="text-on-tertiary-container bg-tertiary-fixed-dim/20 px-2 py-1 rounded text-xs font-bold">+2.4% vs LW</span>
+</div>
+<div class="mt-md w-full bg-surface-container rounded-full h-1.5">
+<div class="bg-secondary h-1.5 rounded-full" style="width: 84%"></div>
+</div>
+</div>
+<div class="bg-white border border-gray-200 p-lg rounded-xl shadow-sm">
+<p class="font-label-caps text-label-caps text-on-primary-container mb-xs">PENDING CLEANINGS</p>
+<div class="flex items-end justify-between">
+<h2 class="font-display text-display text-error">12</h2>
+<span class="material-symbols-outlined text-error mb-2">cleaning_services</span>
+</div>
+<p class="text-body-sm text-on-primary-container mt-xs">Estimated wait: 45 min</p>
+</div>
+</div>
+<!-- Room Map (Visual Grid) -->
+<div class="col-span-12 lg:col-span-6 bg-white border border-gray-200 rounded-xl shadow-sm p-lg overflow-hidden">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-h3 text-h3">Floor 04: Room Map</h3>
+<div class="flex gap-sm">
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 bg-tertiary-fixed-dim rounded-full"></span>
+<span class="text-[10px] font-label-caps">Available</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 bg-secondary rounded-full"></span>
+<span class="text-[10px] font-label-caps">Occupied</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 bg-error-container rounded-full"></span>
+<span class="text-[10px] font-label-caps">Dirty</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-5 gap-sm">
+<!-- Floor 4 Rows -->
+<div class="bg-secondary text-on-secondary p-md aspect-square flex flex-col justify-between rounded-lg relative group cursor-pointer">
+<span class="text-label-caps opacity-70">401</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg"></div>
+</div>
+<div class="bg-secondary text-on-secondary p-md aspect-square flex flex-col justify-between rounded-lg">
+<span class="text-label-caps opacity-70">402</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-md aspect-square flex flex-col justify-between rounded-lg border-dashed">
+<span class="text-label-caps text-on-surface-variant">403</span>
+<span class="material-symbols-outlined text-tertiary-fixed-dim">check_circle</span>
+</div>
+<div class="bg-error-container p-md aspect-square flex flex-col justify-between rounded-lg">
+<span class="text-label-caps text-on-error-container">404</span>
+<span class="material-symbols-outlined text-error">mop</span>
+</div>
+<div class="bg-secondary text-on-secondary p-md aspect-square flex flex-col justify-between rounded-lg">
+<span class="text-label-caps opacity-70">405</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<!-- Row 2 -->
+<div class="bg-secondary text-on-secondary p-md aspect-square flex flex-col justify-between rounded-lg">
+<span class="text-label-caps opacity-70">406</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="bg-error-container p-md aspect-square flex flex-col justify-between rounded-lg">
+<span class="text-label-caps text-on-error-container">407</span>
+<span class="material-symbols-outlined text-error">mop</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-md aspect-square flex flex-col justify-between rounded-lg border-dashed">
+<span class="text-label-caps text-on-surface-variant">408</span>
+<span class="material-symbols-outlined text-tertiary-fixed-dim">check_circle</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-md aspect-square flex flex-col justify-between rounded-lg border-dashed">
+<span class="text-label-caps text-on-surface-variant">409</span>
+<span class="material-symbols-outlined text-tertiary-fixed-dim">check_circle</span>
+</div>
+<div class="bg-secondary text-on-secondary p-md aspect-square flex flex-col justify-between rounded-lg">
+<span class="text-label-caps opacity-70">410</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+</div>
+</div>
+<!-- Service Queue -->
+<div class="col-span-12 lg:col-span-3 bg-white border border-gray-200 rounded-xl shadow-sm p-lg">
+<h3 class="font-h3 text-h3 mb-lg flex items-center justify-between">
+                    Service Queue
+                    <span class="bg-primary text-on-primary text-[10px] font-bold px-2 py-0.5 rounded-full">3 NEW</span>
+</h3>
+<div class="space-y-md">
+<!-- Queue Item 1 -->
+<div class="p-md bg-surface-container-low rounded-lg border-l-2 border-secondary">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-primary">Towels &amp; Linens</span>
+<span class="text-xs text-secondary font-bold">04:12</span>
+</div>
+<div class="flex items-center gap-xs text-on-primary-container mb-2">
+<span class="material-symbols-outlined text-sm">room</span>
+<span class="text-xs">Room 402</span>
+</div>
+<button class="w-full text-center border border-outline-variant py-1 rounded text-xs font-bold hover:bg-primary hover:text-white transition-colors">ASSIGN</button>
+</div>
+<!-- Queue Item 2 -->
+<div class="p-md bg-surface-container-low rounded-lg border-l-2 border-error">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-primary">Room Service</span>
+<span class="text-xs text-error font-bold">12:45</span>
+</div>
+<div class="flex items-center gap-xs text-on-primary-container mb-2">
+<span class="material-symbols-outlined text-sm">room</span>
+<span class="text-xs">Room 215</span>
+</div>
+<button class="w-full text-center border border-outline-variant py-1 rounded text-xs font-bold hover:bg-primary hover:text-white transition-colors">ASSIGN</button>
+</div>
+<!-- Queue Item 3 -->
+<div class="p-md bg-surface-container-low rounded-lg border-l-2 border-tertiary-fixed-dim">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-primary">Tech Support</span>
+<span class="text-xs text-on-tertiary-container font-bold">01:30</span>
+</div>
+<div class="flex items-center gap-xs text-on-primary-container mb-2">
+<span class="material-symbols-outlined text-sm">room</span>
+<span class="text-xs">Room 501</span>
+</div>
+<button class="w-full text-center border border-outline-variant py-1 rounded text-xs font-bold hover:bg-primary hover:text-white transition-colors">ASSIGN</button>
+</div>
+</div>
+</div>
+<!-- Arrivals & Departures -->
+<div class="col-span-12 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+<div class="p-lg border-b border-gray-100 flex justify-between items-center">
+<h3 class="font-h3 text-h3">Today's Guests</h3>
+<div class="flex gap-md">
+<button class="font-label-md text-secondary border-b-2 border-secondary pb-1">Arrivals (14)</button>
+<button class="font-label-md text-on-primary-container hover:text-primary transition-colors">Departures (9)</button>
+</div>
+</div>
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="p-md font-label-caps text-on-primary-container">GUEST NAME</th>
+<th class="p-md font-label-caps text-on-primary-container">ROOM TYPE</th>
+<th class="p-md font-label-caps text-on-primary-container">LOYALTY STATUS</th>
+<th class="p-md font-label-caps text-on-primary-container">CHECK-IN TIME</th>
+<th class="p-md font-label-caps text-on-primary-container text-right">ACTION</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-secondary flex items-center justify-center font-bold text-xs">EJ</div>
+<span class="font-body-md font-bold">Elena Jimenez</span>
+</div>
+</td>
+<td class="p-md font-body-sm text-on-primary-container">Deluxe King — Park View</td>
+<td class="p-md">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-0.5 rounded text-[10px] font-bold">PLATINUM</span>
+</td>
+<td class="p-md font-body-sm">14:00 (In 2h)</td>
+<td class="p-md text-right">
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded font-label-md hover:opacity-90 active:scale-95 transition-all">CHECK IN</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-xs">MW</div>
+<span class="font-body-md font-bold">Marcus Wright</span>
+</div>
+</td>
+<td class="p-md font-body-sm text-on-primary-container">Standard Twin</td>
+<td class="p-md">
+<span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold">SILVER</span>
+</td>
+<td class="p-md font-body-sm">15:30 (In 3.5h)</td>
+<td class="p-md text-right">
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded font-label-md hover:opacity-90 active:scale-95 transition-all">CHECK IN</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-white flex items-center justify-center font-bold text-xs">SK</div>
+<span class="font-body-md font-bold">Sarah Koenig</span>
+</div>
+</td>
+<td class="p-md font-body-sm text-on-primary-container">Penthouse Suite</td>
+<td class="p-md">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded text-[10px] font-bold">DIAMOND ELITE</span>
+</td>
+<td class="p-md font-body-sm">12:00 (Early Arrived)</td>
+<td class="p-md text-right">
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded font-label-md hover:opacity-90 active:scale-95 transition-all">CHECK IN</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Floating Action Button for Emergency / Quick Task -->
+<button class="fixed bottom-margin right-margin bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-transform z-50">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+<script>
+    async function loadHotelData() {
+        try {
+            const res = await fetch('/api/hotel');
+            const data = await res.json();
+            const tbody = document.querySelector('tbody');
+            if (tbody && data.bookings) {
+                tbody.innerHTML = data.bookings.map(b => `
+                    <tr class="hover:bg-surface-container-low transition-colors">
+                        <td class="p-md">
+                            <div class="flex items-center gap-md">
+                                <div class="w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-xs">
+                                    ${b.guest_name.split(' ').map(n => n[0]).join('')}
+                                </div>
+                                <span class="font-body-md font-bold">${b.guest_name}</span>
+                            </div>
+                        </td>
+                        <td class="p-md font-body-sm">Room ${b.room_no || 'TBD'}</td>
+                        <td class="p-md"><span class="bg-gray-100 px-2 py-0.5 rounded text-[10px] font-bold uppercase">${b.status}</span></td>
+                        <td class="p-md font-body-sm">${b.check_in}</td>
+                        <td class="p-md text-right">
+                            <button class="bg-primary text-white px-4 py-1.5 rounded text-xs font-bold">MANAGE</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        } catch(e) {}
+    }
+    loadHotelData(); setInterval(loadHotelData, 5000);
+</script>
+</body></html>

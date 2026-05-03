@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NHPL Portal Access</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Work+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <section id="loginView" class="login-view">
+      <div class="login-visual">
+        <div class="brand-lockup">
+          <div class="brand-mark">
+            <span class="material-symbols-outlined">apartment</span>
+            <strong>NHPL</strong>
+          </div>
+          <h1>Premium Travel Experience</h1>
+          <p>Book flights, hotels, and curated travel experiences across Netarhat and beyond with our seamless unified portal.</p>
+          <div class="trust-row">
+            <div>
+              <span class="material-symbols-outlined">verified_user</span>
+              <strong>Secure Portal</strong>
+              <small>Enterprise access</small>
+            </div>
+            <div>
+              <span class="material-symbols-outlined">hotel</span>
+              <strong>Premium Stays</strong>
+              <small>Curated operations</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="auth-panel">
+        <div class="auth-tabs" role="tablist" aria-label="Account mode">
+          <button id="signInTab" class="active" type="button" data-mode="signin">Sign in</button>
+          <button id="createTab" type="button" data-mode="create">Create account</button>
+        </div>
+        <form id="loginForm" class="auth-form">
+          <div>
+            <h2>Welcome back</h2>
+            <p>Please enter your credentials to access your portal.</p>
+          </div>
+          <label for="domainInput">Account category</label>
+          <select id="domainInput" name="domain">
+            <option value="customer">Customer Page</option>
+            <option value="admin">Admin Page</option>
+            <option value="hotels">Hotel Ops</option>
+            <option value="dining">Restaurant Ops</option>
+            <option value="logistics">Travel Hub</option>
+            <option value="driver">Driver Portal</option>
+            <option value="travel">Travel Desk</option>
+          </select>
+          <label for="emailInput">Email Address</label>
+          <div class="field-shell">
+            <span class="material-symbols-outlined">alternate_email</span>
+            <input id="emailInput" name="email" type="email" placeholder="you@example.com" autocomplete="username" required />
+          </div>
+          <label for="passwordInput">Password</label>
+          <div class="field-shell">
+            <span class="material-symbols-outlined">lock</span>
+            <input id="passwordInput" name="password" type="password" autocomplete="current-password" required />
+          </div>
+          <label id="nameLabel" class="create-only hidden" for="nameInput">Full name</label>
+          <div id="nameField" class="field-shell create-only hidden">
+            <span class="material-symbols-outlined">badge</span>
+            <input id="nameInput" name="name" type="text" autocomplete="name" placeholder="Your full name" />
+          </div>
+          <label id="hotelNameLabel" class="create-only hotel-create-only hidden" for="hotelNameInput">Hotel name</label>
+          <div id="hotelNameField" class="field-shell create-only hotel-create-only hidden">
+            <span class="material-symbols-outlined">apartment</span>
+            <input id="hotelNameInput" name="hotel_name" type="text" placeholder="New hotel property name" />
+          </div>
+          <label class="remember-line">
+            <input type="checkbox" name="remember" />
+            <span>Remember this device for 30 days</span>
+          </label>
+          <button id="authSubmit" class="primary-action" type="submit">
+            <span>Sign in to account</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+          <p id="loginMessage" class="form-message"></p>
+          <div class="divider"><span>Prototype accounts</span></div>
+          <div class="demo-accounts">
+            <span>admin@apex.local</span>
+            <span>customer@nhpl.local</span>
+            <span>hotel@apex.local</span>
+            <span>dining@apex.local</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="appView" class="screen-app hidden">
+      <header class="screen-topbar">
+        <div class="brand">OTA Travel Portal</div>
+        <nav id="screenTabs"></nav>
+        <button id="accountsBtn" class="admin-module-btn hidden" type="button">
+          <span class="material-symbols-outlined">manage_accounts</span>
+          Accounts
+        </button>
+        <button id="hotelSetupBtn" class="admin-module-btn hidden" type="button">
+          <span class="material-symbols-outlined">tune</span>
+          Hotel Setup
+        </button>
+        <div class="user-chip">
+          <span class="material-symbols-outlined">account_circle</span>
+          <div>
+            <strong id="userName">Demo User</strong>
+            <small id="userRole">Role</small>
+          </div>
+        </div>
+        <button id="logoutBtn" class="ghost-btn" title="Sign out">
+          <span class="material-symbols-outlined">logout</span>
+        </button>
+      </header>
+      <iframe id="screenFrame" title="Domain dashboard"></iframe>
+      <section id="accountsView" class="accounts-view hidden" aria-label="Account approval module">
+        <div class="accounts-header">
+          <div>
+            <p class="eyebrow">Admin Module</p>
+            <h2>Account Approval & Activation</h2>
+            <p>Approve pending partner/operator accounts or deactivate individual accounts.</p>
+          </div>
+          <button id="closeAccountsBtn" class="ghost-btn wide" type="button">Back to dashboard</button>
+        </div>
+        <div id="accountsList" class="accounts-list"></div>
+        <p id="accountsMessage" class="form-message"></p>
+      </section>
+      <section id="hotelSetupView" class="accounts-view hidden" aria-label="Hotel setup module">
+        <div class="accounts-header">
+          <div>
+            <p class="eyebrow">Hotel Ops Profile</p>
+            <h2>Hotel Setup</h2>
+            <p>Build this hotel workspace: profile photos, room inventory, service queue, and employee logins.</p>
+          </div>
+          <button id="closeHotelSetupBtn" class="ghost-btn wide" type="button">Back to dashboard</button>
+        </div>
+        <div id="hotelSetupContent" class="setup-grid"></div>
+        <p id="hotelSetupMessage" class="form-message"></p>
+      </section>
+    </section>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Hotel Ops - Management Cluster</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3F49C1",
+                        "primary-dark": "#2E37A4",
+                        "primary-light": "rgba(63, 73, 193, 0.1)",
+                        background: "#F4F6FB",
+                        surface: "#FFFFFF",
+                        "text-dark": "#1A1A1A",
+                        "text-muted": "#7D848D",
+                        outline: "#E8EBF2",
+                        error: "#EF4444"
+                    },
+                    borderRadius: { 'DEFAULT': '12px', 'lg': '16px', 'xl': '24px' },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'] }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-text-dark font-sans min-h-screen">
+
+    <aside class="fixed left-0 top-0 bottom-0 w-64 bg-surface border-r border-outline flex-col p-6 z-50 flex">
+        <div class="flex items-center gap-2 mb-10">
+            <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">H</div>
+            <span class="text-xl font-extrabold tracking-tight">Hotel Ops</span>
+        </div>
+        <nav class="space-y-1">
+            <a href="#" class="flex items-center gap-3 px-4 py-3 bg-primary-light text-primary rounded-xl font-semibold">
+                <span class="material-symbols-outlined">dashboard</span>
+                Front Desk
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-background rounded-xl">
+                <span class="material-symbols-outlined">hotel</span>
+                Rooms
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-background rounded-xl">
+                <span class="material-symbols-outlined">cleaning_services</span>
+                Housekeeping
+            </a>
+        </nav>
+    </aside>
+
+    <main class="ml-64 p-10 space-y-8">
+        <header class="flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-extrabold text-primary">Front Desk Console</h1>
+                <p class="text-text-muted">Interlinked with Customer & Restaurant Clusters</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="bg-surface p-4 rounded-2xl border border-outline shadow-sm text-center min-w-[120px]">
+                    <p class="text-[10px] font-bold text-text-muted uppercase">Occupancy</p>
+                    <p id="occRate" class="text-2xl font-black text-primary">0%</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-12 gap-8">
+            <!-- Room Grid -->
+            <div class="col-span-8 bg-surface p-6 rounded-3xl border border-outline shadow-sm">
+                <h3 class="font-bold mb-6 flex justify-between items-center">
+                    Room Inventory Map
+                    <button onclick="loadRooms()" class="text-xs text-primary flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">refresh</span>Sync
+                    </button>
+                </h3>
+                <div id="roomGrid" class="grid grid-cols-5 gap-4">
+                    <!-- Loading... -->
+                </div>
+            </div>
+
+            <!-- Service Queue -->
+            <div class="col-span-4 bg-surface p-6 rounded-3xl border border-outline shadow-sm">
+                <h3 class="font-bold mb-6">Live Service Queue</h3>
+                <div id="serviceQueue" class="space-y-4">
+                    <p class="text-sm text-text-muted text-center py-10">No pending requests</p>
+                </div>
+            </div>
+
+            <!-- Recent Bookings -->
+            <div class="col-span-12 bg-surface p-6 rounded-3xl border border-outline shadow-sm overflow-hidden">
+                <h3 class="font-bold mb-6">Recent Arrivals</h3>
+                <table class="w-full text-left">
+                    <thead class="bg-background text-[10px] font-extrabold text-text-muted uppercase tracking-wider">
+                        <tr>
+                            <th class="p-4">Guest</th>
+                            <th class="p-4">Room</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4">Check-in</th>
+                            <th class="p-4 text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTable" class="divide-y divide-outline">
+                        <!-- Loaded via API -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const API_BASE = "https://ep-patient-moon-a4h8ty8m.apirest.us-east-1.aws.neon.tech/neondb/rest/v1";
+        const AUTH_TOKEN = "PROTOTYPE_BYPASS";
+
+        async function apiFetch(path, options = {}) {
+            const headers = { 'Authorization': `Bearer ${AUTH_TOKEN}`, 'Content-Type': 'application/json', ...options.headers };
+            const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+            return res.json();
+        }
+
+        async function loadRooms() {
+            const rooms = await apiFetch('/hotel_rooms?order=room_no.asc');
+            const grid = document.getElementById('roomGrid');
+            grid.innerHTML = rooms.map(r => `
+                <div class="aspect-square rounded-xl p-3 flex flex-col justify-between border-2 ${
+                    r.status === 'Occupied' ? 'bg-primary-light border-primary text-primary' : 
+                    r.status === 'Dirty' ? 'bg-red-50 border-error text-error' : 
+                    'bg-background border-outline text-text-muted'
+                }">
+                    <span class="text-[10px] font-black">${r.room_no}</span>
+                    <span class="material-symbols-outlined text-lg">${
+                        r.status === 'Occupied' ? 'person' : 
+                        r.status === 'Dirty' ? 'mop' : 'check_circle'
+                    }</span>
+                </div>
+            `).join('');
+            
+            const occ = Math.round((rooms.filter(r => r.status === 'Occupied').length / rooms.length) * 100) || 0;
+            document.getElementById('occRate').textContent = `${occ}%`;
+        }
+
+        async function loadBookings() {
+            const bookings = await apiFetch('/hotel_bookings?order=id.desc&limit=5');
+            const table = document.getElementById('bookingsTable');
+            table.innerHTML = bookings.map(b => `
+                <tr class="hover:bg-background transition-colors">
+                    <td class="p-4 font-bold text-sm">${b.guest_name}</td>
+                    <td class="p-4 text-sm">${b.room_no || 'Pending'}</td>
+                    <td class="p-4">
+                        <span class="px-2 py-1 bg-primary-light text-primary text-[10px] font-extrabold rounded-md uppercase">${b.status}</span>
+                    </td>
+                    <td class="p-4 text-xs text-text-muted">${b.check_in}</td>
+                    <td class="p-4 text-right">
+                        <button class="text-[10px] font-bold border border-outline px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white transition-all">MANAGE</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function loadServices() {
+            const services = await apiFetch('/hotel_services?status=eq.Open');
+            const queue = document.getElementById('serviceQueue');
+            if (services.length === 0) {
+                queue.innerHTML = '<p class="text-sm text-text-muted text-center py-10">All clear!</p>';
+                return;
+            }
+            queue.innerHTML = services.map(s => `
+                <div class="p-4 bg-background rounded-2xl border-l-4 border-primary space-y-2">
+                    <div class="flex justify-between items-start">
+                        <p class="font-bold text-sm text-primary">${s.title}</p>
+                        <span class="text-[10px] font-black bg-white px-2 py-0.5 rounded border border-outline">ROOM ${s.room_no}</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <p class="text-xs text-text-muted">${s.priority} Priority</p>
+                        <button onclick="completeService(${s.id})" class="text-[10px] font-bold text-primary hover:underline">MARK DONE</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function completeService(id) {
+            await apiFetch(`/hotel_services?id=eq.${id}`, {
+                method: 'PATCH',
+                body: JSON.stringify({ status: 'Done' })
+            });
+            loadServices();
+        }
+
+        // Initialize and Poll
+        function init() {
+            loadRooms();
+            loadBookings();
+            loadServices();
+        }
+
+        init();
+        setInterval(init, 10000); // Sync every 10s
+    </script>
+</body>
+</html>

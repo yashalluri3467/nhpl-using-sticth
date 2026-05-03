@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-surface": "#2f3131",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-tertiary-container": "#009668",
+                        "secondary-container": "#645efb",
+                        "surface-container": "#eeeeee",
+                        "on-primary-fixed-variant": "#474747",
+                        "on-error": "#ffffff",
+                        "background": "#f9f9f9",
+                        "primary": "#000000",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#e2dfff",
+                        "tertiary-container": "#002113",
+                        "on-secondary": "#ffffff",
+                        "outline": "#7e7576",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-primary-fixed": "#1b1b1b",
+                        "secondary": "#4b41e1",
+                        "surface-bright": "#f9f9f9",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#0f0069",
+                        "on-background": "#1a1c1c",
+                        "tertiary": "#000000",
+                        "on-surface": "#1a1c1c",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-container": "#848484",
+                        "primary-fixed": "#e2e2e2",
+                        "surface-dim": "#dadada",
+                        "on-secondary-fixed-variant": "#3323cc",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "inverse-primary": "#c6c6c6",
+                        "surface": "#f9f9f9",
+                        "on-secondary-container": "#fffbff",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "outline-variant": "#cfc4c5",
+                        "surface-tint": "#5e5e5e",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#1b1b1b",
+                        "on-tertiary-fixed": "#002113",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "surface-container-low": "#f3f3f3",
+                        "on-surface-variant": "#4c4546",
+                        "inverse-on-surface": "#f0f1f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin": "2rem",
+                        "base": "4px",
+                        "md": "1rem",
+                        "lg": "1.5rem",
+                        "sm": "0.5rem",
+                        "xs": "0.25rem",
+                        "xl": "2.5rem",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "h3": ["Work Sans"],
+                        "display": ["Work Sans"],
+                        "h2": ["Work Sans"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h1": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "h3": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["13px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.map-bg {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuAv6NjsfMvui1lQOo4BHU9Jb7k8odOs5bRcQgqu7OwyXE2cCL8pj6abcf9w4f8Bl1iEZkcQ8GreqK5PazwFQnF452YQgxwN0Q_qIwiCuM2AV4k4aF_2kTG99nxv9a-LCPsgVmb-b_2V_7VELOMFCImXJuO4y6oinZURFhLNfhM8h_HEDcn5Vt7ceLeX9fu4eT4WDlLdqWltrQpvb3ysFX8qK-dRzA4iQ8_jj1MrQxAZUG3eEWlCS5uRRXTUpSF-IV9mtw98awuxyVh8);
+    background-size: cover;
+    background-position: center
+    }</style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-white dark:bg-gray-950 text-slate-900 dark:text-slate-50 font-['Work_Sans'] text-sm font-medium docked full-width top-0 border-b border-slate-200 dark:border-slate-800 flat no shadows flex justify-between items-center w-full px-6 h-16 fixed z-50">
+<div class="flex items-center gap-8">
+<h1 class="text-xl font-bold tracking-tighter text-slate-900 dark:text-slate-50">DriverPort</h1>
+<nav class="hidden md:flex gap-6 h-full items-center">
+<a class="text-slate-900 dark:text-slate-50 border-b-2 border-slate-900 dark:border-slate-50 pb-4 mt-4" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors pb-4 mt-4" href="#">Earnings</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors pb-4 mt-4" href="#">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container rounded-full px-3 py-1.5 gap-2 border border-outline-variant">
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed-dim shadow-[0_0_8px_rgba(78,222,163,0.8)]"></div>
+<span class="font-label-md text-on-surface">Go Online</span>
+<div class="w-8 h-4 bg-primary rounded-full relative">
+<div class="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</button>
+<img alt="Driver Profile Picture" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional studio portrait of a confident male ride-share driver in his mid-30s wearing a clean, modern black polo shirt. The lighting is soft and directional, highlighting his friendly expression against a neutral, high-key studio background. The overall aesthetic is minimalist, crisp, and professional, perfectly aligning with a premium logistics application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2hckPXln43S-qEZ0-o1GDHzyYS21MCM3R_mWCc9214EXPJTnU-tJGN4uWUwkB5lrYGlqtnFljU7q0AvPRA6fQz3NeTvMnpEWkwJzlwNTsW6vgRrrUd_YzUAivJF_wmUqZGWKyoRUj3sHKIYthSiSKQPZWBEMCbkHgL8si41hYRCjC2AR_DvS3rvV7KEkIPiZvC7YE26D95gpjETI-K9O_J1UJzT_thEaugGgW04qvy7rIUGmyLLnZ_NtDxk8s8mj5q2NTzhuReez1"/>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<aside class="hidden lg:flex flex-col h-screen fixed left-0 top-0 bg-white dark:bg-gray-950 text-slate-900 dark:text-slate-50 font-['Work_Sans'] text-sm font-medium docked left-0 h-full w-64 border-r border-slate-200 dark:border-slate-800 flat no shadows z-40 pt-20">
+<div class="px-6 py-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Driver Avatar" class="w-full h-full object-cover" data-alt="A focused close-up of a professional driver's face, showing reliability and service-oriented demeanor. The image is bright and cleanly composed, with a color palette dominated by whites and soft grays. The style is 21st-century corporate minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiLeNJV-Yf-6AA0jShqaI-0_YQyDEErTY9lQ70uZRQOsZmH1X_wJ66MiUoce18atU3qHt2VEFd58lGCb-NRl2lQlEcfQxW1bwppYQoJQeJ70YIbYk__rogim2fXGM8NNbOT_2Ft4Y8e__YV0KWRGHIeZwLDGr-9a8mzWtCbyR2qQ_BWMJaPIJimzvXV-M3DVBCiris__rYA0taEp4htQtODfBq_IAo0PV1VaQUMnrQTwoQyikOmY7U55BGTusfAaOExol1yaFKw8CT"/>
+</div>
+<div>
+<p class="font-bold text-slate-900">Alex Driver</p>
+<p class="text-xs text-secondary font-semibold">Gold Partner</p>
+</div>
+</div>
+<nav class="flex-1 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-50 border-l-4 border-slate-900 dark:border-slate-50 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Earnings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Trip History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span>Ratings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Help Center</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full py-3 bg-primary text-on-primary font-label-md rounded shadow-sm hover:opacity-90 transition-opacity">
+                View Weekly Report
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas (Map) -->
+<main class="lg:ml-64 pt-16 h-screen relative bg-surface-container-low overflow-hidden">
+<!-- Map Background Mock -->
+<div class="absolute inset-0 z-0 map-bg" data-location="Chicago" style="">
+<!-- Simulated Map Markers -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="relative">
+<div class="absolute -top-10 -left-5 bg-primary text-on-primary px-2 py-1 rounded text-[10px] font-bold whitespace-nowrap">YOU ARE HERE</div>
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">navigation</span>
+</div>
+</div>
+<div class="absolute top-[40%] left-[60%]">
+<div class="relative">
+<div class="absolute -top-10 -left-5 bg-secondary text-on-secondary px-2 py-1 rounded text-[10px] font-bold whitespace-nowrap">PICKUP POINT</div>
+<span class="material-symbols-outlined text-secondary text-4xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</div>
+<!-- Left Panel: Daily Performance -->
+<div class="absolute left-lg top-lg z-20 w-72 flex flex-col gap-gutter hidden sm:flex">
+<div class="bg-white border border-outline-variant p-md shadow-sm">
+<h3 class="font-h3 text-primary mb-md">Daily Performance</h3>
+<div class="grid grid-cols-1 gap-sm">
+<div class="flex justify-between items-center py-sm border-b border-surface-container">
+<span class="text-body-sm text-on-surface-variant font-medium">Today's Earnings</span>
+<span class="font-h3 text-on-surface">$142.80</span>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-surface-container">
+<span class="text-body-sm text-on-surface-variant font-medium">Total Trips</span>
+<span class="font-h3 text-on-surface">12</span>
+</div>
+<div class="flex justify-between items-center py-sm">
+<span class="text-body-sm text-on-surface-variant font-medium">Hours Online</span>
+<span class="font-h3 text-on-surface">6.5h</span>
+</div>
+</div>
+</div>
+<div class="bg-white border border-outline-variant p-md shadow-sm">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-secondary text-sm">trending_up</span>
+<span class="font-label-caps text-secondary">PEAK PRICING ACTIVE</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">Demand is high in your area. Earn 1.5x on your next 3 trips.</p>
+</div>
+</div>
+<!-- NEW REQUEST MODAL (The Primary Focus) -->
+<div class="absolute inset-0 z-30 flex items-center justify-center pointer-events-none p-4">
+<div class="bg-white border border-outline-variant w-full max-w-md pointer-events-auto shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative overflow-hidden">
+<!-- Countdown Bar -->
+<div class="h-1.5 bg-surface-container w-full">
+<div class="h-full bg-secondary w-3/4"></div>
+</div>
+<div class="p-lg">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<span class="font-label-caps text-secondary mb-xs block">NEW TRIP REQUEST</span>
+<h2 class="font-h1 text-primary">$24.50</h2>
+<p class="text-body-sm text-on-surface-variant font-medium">Est. Earnings including tip</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 text-secondary font-bold">
+<span class="material-symbols-outlined text-lg">timer</span>
+<span class="text-h3">15s</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">REMAINING</span>
+</div>
+</div>
+<div class="space-y-md mb-xl">
+<div class="flex items-start gap-md">
+<div class="flex flex-col items-center gap-1 mt-1">
+<div class="w-3 h-3 rounded-full border-2 border-secondary"></div>
+<div class="w-0.5 h-8 bg-surface-container-highest"></div>
+<div class="w-3 h-3 bg-primary"></div>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<p class="font-label-caps text-on-surface-variant">PICKUP • 1.2 MILES AWAY</p>
+<p class="font-h3 text-on-surface">The Grand Hyatt, 151 E Wacker Dr</p>
+</div>
+<div>
+<p class="font-label-caps text-on-surface-variant">DESTINATION • 8.4 MILES TOTAL</p>
+<p class="font-h3 text-on-surface">O'Hare Terminal 3</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-md flex items-center justify-between border border-surface-container">
+<div class="flex items-center gap-md">
+<img alt="Passenger" class="w-12 h-12 rounded-full object-cover" data-alt="A bright and vibrant portrait of a professional woman in a crisp white business shirt, smiling warmly at the camera. The setting is a clean, minimalist workspace with soft natural light flooding in from the side. The color palette is composed of high-contrast whites and soft skin tones, evoking a sense of reliability and friendly interaction." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA58d5zCAo29X7aruZjR7ptR1O4iYaTX37vaN0Fa2ohfdCBXOYx9p7jV97d87y8UxAJazTiYsd9O81J5YPJUTUmcrAhXILycTsAYU2W_5XWhDfqZYiDktb9ygQRTiC5k9xrVX34n46_-Td2kBz6hZh8w5ZAluWiW-snEiQp_KKGQO6_XBZv3m_lAAUC6H_ZSHCZ67bk5UXsG0p7ZMHNB2R5hxWXq5ddzav4iToS0n4TsFeLuk3iK-nHJ6dUQBqS9dIwvs61p6RRg3dY"/>
+<div>
+<p class="font-bold text-on-surface">Sarah Jenkins</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-bold text-on-surface">4.9</span>
+<span class="text-body-sm text-on-surface-variant ml-1">• 124 trips</span>
+</div>
+</div>
+</div>
+<div class="bg-white border border-outline-variant px-sm py-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-on-tertiary-container">verified_user</span>
+<span class="font-label-caps text-on-tertiary-container">VERIFIED</span>
+</div>
+</div>
+</div>
+<div class="flex gap-md">
+<button class="flex-1 py-4 bg-error text-on-error font-h3 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">close</span>
+                            Decline
+                        </button>
+<button class="flex-[2] py-4 bg-on-tertiary-container text-on-tertiary font-h3 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check</span>
+                            Accept Request
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe bg-white dark:bg-gray-950 text-slate-900 dark:text-slate-50 font-['Work_Sans'] text-[10px] font-medium docked full-width bottom-0 border-t border-slate-200 dark:border-slate-800 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center justify-center text-slate-900 dark:text-slate-50 font-bold active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 active:bg-slate-50 dark:active:bg-slate-900 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>Earnings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 active:bg-slate-50 dark:active:bg-slate-900 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="work_history">work_history</span>
+<span>History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 active:bg-slate-50 dark:active:bg-slate-900 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+</nav>
+</body></html>
