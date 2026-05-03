@@ -181,7 +181,12 @@ async function loadScreens() {
   }
   renderUser();
   renderTabs();
-  if (activeScreen) openScreen(activeScreen);
+  if (activeScreen) {
+    openScreen(activeScreen);
+  } else {
+    const frame = document.querySelector("#screenFrame");
+    if (frame) frame.src = "about:blank";
+  }
 }
 
 function setAuthMode(mode) {

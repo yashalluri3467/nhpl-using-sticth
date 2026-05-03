@@ -30,7 +30,7 @@ const SCREEN_MAP = {
   "master-admin-global": path.join(SCREEN_DIR, "master_admin_global_control_plane", "code.html"),
   "restaurant-dispatch": path.join(SCREEN_DIR, "restaurant_ops_orders_dispatch", "code.html"),
   "restaurant-kitchen": path.join(SCREEN_DIR, "restaurant_ops_orders_kitchen_queue", "code.html"),
-  "hotel-front-desk": path.join(SCREEN_DIR, "hotel_ops_front_desk_housekeeping", "code.html"),
+  "hotel-inventory": path.join(SCREEN_DIR, "hotel_ops_inventory_service_queue", "code.html"),
   "hotel-inventory": path.join(SCREEN_DIR, "hotel_ops_inventory_service_queue", "code.html"),
   "driver-portal": path.join(SCREEN_DIR, "driver_partner_portal_daily_dispatch", "code.html"),
   "driver-trip": path.join(SCREEN_DIR, "driver_personal_trip_dispatch", "code.html"),

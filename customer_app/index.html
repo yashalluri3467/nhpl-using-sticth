@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Portal - VoyageCore</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    <div id="app">
+      <nav class="navbar">
+        <div class="logo">VoyageCore</div>
+        <div class="nav-links">
+          <a href="#" class="active">Travel</a>
+          <a href="#">Hotels</a>
+          <a href="#">Dining</a>
+        </div>
+        <div class="user-profile"><span class="material-icons">account_circle</span></div>
+      </nav>
+
+      <main class="hero">
+        <div class="hero-content">
+          <h1>One Tap to Your Next Adventure</h1>
+          <p>Book travel, rooms, and dining instantly with interlinked data.</p>
+          <div class="quick-builder">
+            <input type="text" placeholder="Where to? (e.g. Netarhat)" />
+            <input type="date" />
+            <button class="btn-primary">Explore</button>
+          </div>
+        </div>
+      </main>
+
+      <section class="db-data-section">
+        <h2>Live Hotels</h2>
+        <div class="cards-grid" id="hotels-grid">
+          <p>Loading hotels from shared database...</p>
+        </div>
+      </section>
+      
+      <section class="db-data-section">
+        <h2>Top Dining</h2>
+        <div class="cards-grid" id="dining-grid">
+          <p>Loading dining from shared database...</p>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

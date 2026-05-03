@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Logistics - VoyageCore</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    <div id="app">
+      <aside class="sidebar">
+        <div class="logo">AdminControl</div>
+        <nav class="nav-links">
+          <a href="#" class="active"><span class="material-icons">dashboard</span> Dashboard</a>
+          <a href="#"><span class="material-icons">local_shipping</span> Dispatch</a>
+          <a href="#"><span class="material-icons">people</span> Drivers</a>
+          <a href="#"><span class="material-icons">event</span> Events</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="top-bar">
+          <h2>Logistics Overview</h2>
+          <div class="user-profile"><span class="material-icons">notifications</span></div>
+        </header>
+
+        <section class="stats-grid">
+          <div class="stat-card">
+            <h3>Active Trips</h3>
+            <div class="stat-value">12</div>
+          </div>
+          <div class="stat-card">
+            <h3>Drivers Online</h3>
+            <div class="stat-value">8</div>
+          </div>
+          <div class="stat-card">
+            <h3>System Status</h3>
+            <div class="stat-value" style="color: #4ade80;">Operational</div>
+          </div>
+        </section>
+
+        <section class="db-data-section">
+          <h2>Recent Events (Shared DB)</h2>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Level</th>
+                  <th>Message</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody id="events-body">
+                <tr><td colspan="4">Loading events...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
