@@ -52,9 +52,8 @@ const DOMAIN_SCREENS = {
     { slug: "customer-dashboard", title: "Voyage Portal", icon: "explore", url: "/clusters/customer" }
   ],
   hotels: [
-    { slug: "hotel-cluster", name: "Management (Cluster)" },
-    { slug: "hotel-front-desk", name: "Legacy Front Desk" },
-    { slug: "hotel-inventory", name: "Legacy Inventory" },
+    { slug: "hotel-cluster", title: "Hotel Management", icon: "apartment", url: "/clusters/hotel" },
+    { slug: "hotel-inventory", title: "Legacy Inventory", icon: "inventory", url: "/screens/hotel-inventory" },
   ],
   dining: [
     { slug: "restaurant-cluster", name: "Ops (Cluster)" },

@@ -163,6 +163,11 @@ function renderTabs() {
       </button>
     `).join("");
     document.querySelectorAll("[data-screen]").forEach((button) => {
+      // Fail-safe: Hide legacy front desk if it somehow still appears
+      if (button.textContent.trim() === "Legacy Front Desk") {
+        button.remove();
+        return;
+      }
       button.addEventListener("click", () => openScreen(button.dataset.screen));
     });
   }
