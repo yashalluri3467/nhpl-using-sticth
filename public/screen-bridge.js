@@ -790,7 +790,7 @@
     // Replace brand name
     document.querySelectorAll("span, a, div, h1, h2, h3, p, button").forEach(n => {
       if (n.childNodes.length === 1 && n.childNodes[0].nodeType === 3) {
-        if (n.textContent.trim() === "OmniMarket") n.textContent = "NHPL";
+        if (n.textContent.trim().toLowerCase() === "omnimarket") n.textContent = "NHPL";
         if (n.textContent.trim() === "System Status") n.textContent = "My Bookings";
       }
     });

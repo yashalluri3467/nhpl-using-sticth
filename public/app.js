@@ -79,6 +79,7 @@ function showLogin() {
 }
 
 function renderUser() {
+  if (!session) return;
   const userNameEl = document.querySelector("#userName");
   const userRoleEl = document.querySelector("#userRole");
   const userAvatarImg = document.querySelector("#userAvatarImg");
@@ -95,8 +96,16 @@ function renderUser() {
     userAvatarImg.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(session.name)}&background=3F49C1&color=fff`;
   }
 
-  if (accountsBtnEl) accountsBtnEl.classList.toggle("hidden", session.default_domain !== "admin");
-  if (hotelSetupBtnEl) hotelSetupBtnEl.classList.toggle("hidden", session.default_domain !== "hotels");
+  // Admin button visibility - strictly based on role/domain
+  const isAdmin = session.default_domain === "admin" || session.role === "admin";
+  const isHotelAdmin = session.default_domain === "hotels";
+
+  if (accountsBtnEl) {
+    accountsBtnEl.classList.toggle("hidden", !isAdmin);
+  }
+  if (hotelSetupBtnEl) {
+    hotelSetupBtnEl.classList.toggle("hidden", !isHotelAdmin);
+  }
 }
 
 // ─── Profile & Settings ───
@@ -613,9 +622,24 @@ document.querySelectorAll(".demo-accounts span").forEach((span) => {
 // ─── Init ───
 setAuthMode("signin");
 
-if (session?.token) {
-  showApp();
-  loadScreens();
-} else {
-  showLogin();
+async function boot() {
+  if (session && session.id) {
+    // Session exists - restore app
+    renderUser();
+    showApp();
+    try {
+      await loadScreens();
+      if (activeScreen) {
+        openScreen(activeScreen);
+      }
+    } catch (e) {
+      console.error("Boot error:", e);
+      showLogin();
+    }
+  } else {
+    // No session - show login
+    showLogin();
+  }
 }
+
+boot();
