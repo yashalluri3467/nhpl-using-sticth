@@ -95,27 +95,40 @@
     </section>
 
     <section id="appView" class="screen-app hidden">
-      <header class="screen-topbar">
-        <div class="brand">OTA Travel Portal</div>
-        <nav id="screenTabs"></nav>
-        <button id="accountsBtn" class="admin-module-btn hidden" type="button">
-          <span class="material-symbols-outlined">manage_accounts</span>
-          Accounts
-        </button>
-        <button id="hotelSetupBtn" class="admin-module-btn hidden" type="button">
-          <span class="material-symbols-outlined">tune</span>
-          Hotel Setup
-        </button>
-        <div class="user-chip">
-          <span class="material-symbols-outlined">account_circle</span>
-          <div>
-            <strong id="userName">Demo User</strong>
-            <small id="userRole">Role</small>
+      <header class="app-shell-header">
+        <div class="shell-brand">
+          <span class="material-symbols-outlined text-primary">dynamic_feed</span>
+          <h1 class="text-lg font-bold tracking-tight">NHPL Ecosystem</h1>
+        </div>
+        
+        <div class="shell-actions">
+          <nav id="screenTabs" class="shell-tabs"></nav>
+          
+          <div class="header-divider"></div>
+          
+          <div class="shell-user-control">
+            <div class="profile-editable-container">
+              <img id="userAvatarImg" src="https://ui-avatars.com/api/?name=User&background=3F49C1&color=fff" class="user-avatar-main" alt="Profile"/>
+              <label for="avatarUpload" class="avatar-edit-badge" title="Change photo">
+                <span class="material-symbols-outlined">edit</span>
+              </label>
+              <input type="file" id="avatarUpload" class="hidden" accept="image/*"/>
+            </div>
+            
+            <div class="user-meta">
+              <span id="userName" class="user-name-text">Demo User</span>
+              <span id="userRole" class="user-role-badge">Role</span>
+            </div>
+            
+            <button id="settingsBtn" class="shell-icon-btn" title="System Settings">
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+            
+            <button id="logoutBtn" class="shell-icon-btn logout" title="Sign out">
+              <span class="material-symbols-outlined">logout</span>
+            </button>
           </div>
         </div>
-        <button id="logoutBtn" class="ghost-btn" title="Sign out">
-          <span class="material-symbols-outlined">logout</span>
-        </button>
       </header>
       <iframe id="screenFrame" title="Domain dashboard"></iframe>
       <section id="accountsView" class="accounts-view hidden" aria-label="Account approval module">

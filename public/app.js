@@ -81,14 +81,43 @@ function showLogin() {
 function renderUser() {
   const userNameEl = document.querySelector("#userName");
   const userRoleEl = document.querySelector("#userRole");
+  const userAvatarImg = document.querySelector("#userAvatarImg");
   const accountsBtnEl = document.querySelector("#accountsBtn");
   const hotelSetupBtnEl = document.querySelector("#hotelSetupBtn");
   
   if (userNameEl) userNameEl.textContent = session.name;
   if (userRoleEl) userRoleEl.textContent = session.role;
+  
+  // Load saved avatar if exists
+  if (userAvatarImg && session.avatar) {
+    userAvatarImg.src = session.avatar;
+  } else if (userAvatarImg) {
+    userAvatarImg.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(session.name)}&background=3F49C1&color=fff`;
+  }
+
   if (accountsBtnEl) accountsBtnEl.classList.toggle("hidden", session.default_domain !== "admin");
   if (hotelSetupBtnEl) hotelSetupBtnEl.classList.toggle("hidden", session.default_domain !== "hotels");
 }
+
+// ─── Profile & Settings ───
+document.querySelector("#avatarUpload")?.addEventListener("change", function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    const base64 = event.target.result;
+    session.avatar = base64;
+    localStorage.setItem("apexSession", JSON.stringify(session));
+    renderUser();
+    showToast("Profile photo updated!", "success");
+  };
+  reader.readAsDataURL(file);
+});
+
+document.querySelector("#settingsBtn")?.addEventListener("click", () => {
+  showToast("System settings are managed via Global Control Plane.", "info");
+});
 
 function openScreen(slug) {
   activeScreen = slug;

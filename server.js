@@ -1374,25 +1374,29 @@ app.get("/screens/:slug", async (req, res) => {
 app.get("/", (_req, res) => res.sendFile(path.join(PUBLIC_DIR, "index.html")));
 
 // ─── Boot ───
-await initPostgres();
-await seedData();
+if (process.env.NODE_ENV !== "production") {
+  await initPostgres();
+  await seedData();
 
-function startServer(port, attemptsLeft = 10) {
-  const server = app.listen(port, "127.0.0.1", () => {
-    console.log(`✅  NHPL prototype running at http://127.0.0.1:${port}`);
-    console.log(`   Database mode: ${pool ? "Neon/Postgres" : "local memory fallback"}`);
-    if (!process.env.APP_SEED_PASSWORD) {
-      console.log(`   Generated one-time seed password: ${SEED_PASSWORD}`);
-    }
-  });
-  server.on("error", (error) => {
-    if (error.code === "EADDRINUSE" && attemptsLeft > 0) {
-      console.log(`Port ${port} busy — trying ${port + 1}…`);
-      startServer(port + 1, attemptsLeft - 1);
-      return;
-    }
-    throw error;
-  });
+  function startServer(port, attemptsLeft = 10) {
+    const server = app.listen(port, "0.0.0.0", () => {
+      console.log(`✅  NHPL prototype running at http://localhost:${port}`);
+      console.log(`   Database mode: ${pool ? "Neon/Postgres" : "local memory fallback"}`);
+      if (!process.env.APP_SEED_PASSWORD) {
+        console.log(`   Generated one-time seed password: ${SEED_PASSWORD}`);
+      }
+    });
+    server.on("error", (error) => {
+      if (error.code === "EADDRINUSE" && attemptsLeft > 0) {
+        console.log(`Port ${port} busy — trying ${port + 1}…`);
+        startServer(port + 1, attemptsLeft - 1);
+        return;
+      }
+      throw error;
+    });
+  }
+
+  startServer(PORT);
 }
 
-startServer(PORT);
+export default app;

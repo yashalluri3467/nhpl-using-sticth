@@ -304,23 +304,166 @@ h1, h2 { margin: 0; font-family: "Work Sans", sans-serif; }
 
 .demo-accounts span:active { transform: scale(.97); }
 
-/* ─── App shell ─── */
 .screen-app {
   height: 100vh;
   display: grid;
-  grid-template-rows: 64px 1fr;
+  grid-template-rows: auto 1fr;
   overflow: hidden;
 }
 
-.screen-topbar {
+.app-shell-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  z-index: 100;
+}
+
+.shell-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shell-brand .material-symbols-outlined {
+  font-size: 28px;
+  background: var(--primary-light);
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.shell-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.shell-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.shell-tabs button {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.shell-tabs button:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.shell-tabs button.active {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.header-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--line);
+}
+
+.shell-user-control {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 0 24px;
+}
+
+.profile-editable-container {
+  position: relative;
+  width: 42px;
+  height: 42px;
+}
+
+.user-avatar-main {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.avatar-edit-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid #fff;
+  transition: transform 0.2s;
+}
+
+.avatar-edit-badge:hover {
+  transform: scale(1.1);
+}
+
+.avatar-edit-badge .material-symbols-outlined {
+  font-size: 10px;
+}
+
+.user-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name-text {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.user-role-badge {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.shell-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
   background: #fff;
-  border-bottom: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
-  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+
+.shell-icon-btn:hover {
+  background: var(--bg);
+  border-color: var(--muted);
+  color: var(--text);
+}
+
+.shell-icon-btn.logout {
+  color: var(--error);
+  border-color: rgba(255, 59, 48, 0.2);
+  background: rgba(255, 59, 48, 0.05);
+}
+
+.shell-icon-btn.logout:hover {
+  background: var(--error);
+  color: #fff;
 }
 
 .brand {

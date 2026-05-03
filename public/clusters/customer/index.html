@@ -90,8 +90,11 @@
         
         <!-- Header -->
         <header class="flex justify-between items-center">
-            <div>
-                <p class="text-text-muted text-sm font-medium">Welcome to 👋</p>
+            <div class="flex flex-col">
+                <div class="flex items-center gap-2">
+                    <p class="text-text-muted text-sm font-medium">Welcome to 👋</p>
+                    <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-green-200">Cloud Sync Active</span>
+                </div>
                 <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">NHPL Customer Portal</h1>
             </div>
             <div class="flex items-center gap-4">
@@ -180,7 +183,6 @@
 
     <script>
         const API_BASE = "https://ep-patient-moon-a4h8ty8m.apirest.us-east-1.aws.neon.tech/neondb/rest/v1";
-        // NOTE: In a real app, this token comes from Neon Auth login
         const AUTH_TOKEN = "PROTOTYPE_BYPASS"; 
 
         async function apiFetch(path, options = {}) {
@@ -199,7 +201,6 @@
             });
             document.getElementById(id).classList.remove('hidden');
             
-            // Update sidebar styles
             document.querySelectorAll('.nav-link').forEach(l => {
                 l.classList.remove('bg-primary-light', 'text-primary', 'font-semibold');
                 l.classList.add('text-text-muted');
@@ -235,13 +236,13 @@
             const dest = document.getElementById('destInput').value || "Netarhat";
             alert(`Initiating combined booking for ${dest}. Sending Inter-Cluster Requests...`);
             
-            // This would normally be a series of API calls to different schemas
             try {
                 const booking = await apiFetch('/customer_bookings', {
                     method: 'POST',
                     body: JSON.stringify({
+                        user_id: 1,
                         type: 'Combined',
-                        customer_name: 'John Doe',
+                        guest_name: 'John Doe',
                         notes: `Combined trip to ${dest}`,
                         date: document.getElementById('dateInput').value || new Date().toISOString().split('T')[0]
                     })
@@ -271,7 +272,6 @@
             `).join('') || '<p class="text-center text-text-muted">No active trips found.</p>';
         }
 
-        // Initialize
         loadHotels();
         loadTrips();
     </script>
