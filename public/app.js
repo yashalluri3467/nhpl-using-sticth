@@ -629,6 +629,9 @@ async function boot() {
     showApp();
     try {
       await loadScreens();
+      if (!activeScreen && session.default_domain === "admin") {
+        activeScreen = "admin-logistics";
+      }
       if (activeScreen) {
         openScreen(activeScreen);
       }

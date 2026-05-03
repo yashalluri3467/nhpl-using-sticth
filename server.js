@@ -44,12 +44,11 @@ const SCREEN_MAP = {
 
 const DOMAIN_SCREENS = {
   admin: [
-    { slug: "master-admin-ecosystem", name: "Ecosystem Overview" },
-    { slug: "master-admin-global", name: "Global Control Plane" },
+    { slug: "admin-logistics", title: "Logistics Control", icon: "local_shipping", url: "/clusters/travel/admin.html" },
+    { slug: "admin-system", title: "System Health", icon: "monitoring", url: "/clusters/travel/admin.html#stats" }
   ],
   customer: [
-    { slug: "customer-cluster", name: "Dashboard (Cluster)" },
-    { slug: "voyagecore", name: "Legacy VoyageCore" }
+    { slug: "customer-dashboard", title: "Voyage Portal", icon: "explore", url: "/clusters/customer" }
   ],
   hotels: [
     { slug: "hotel-cluster", name: "Management (Cluster)" },
