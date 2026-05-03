@@ -45,6 +45,7 @@ const SCREEN_MAP = {
 const DOMAIN_SCREENS = {
   admin: [
     { slug: "admin-logistics", title: "Logistics Control", icon: "local_shipping", url: "/clusters/travel/admin.html" },
+    { slug: "travel-hub", title: "Legacy Coordination", icon: "hub", url: "/screens/travel-hub" },
     { slug: "admin-system", title: "System Health", icon: "monitoring", url: "/clusters/travel/admin.html#stats" }
   ],
   customer: [
@@ -60,19 +61,6 @@ const DOMAIN_SCREENS = {
     { slug: "restaurant-dispatch", name: "Legacy Dispatch" },
     { slug: "restaurant-kitchen", name: "Legacy Kitchen" },
   ],
-  logistics: [
-    { slug: "travel-cluster", name: "Fleet (Cluster)" },
-    { slug: "travel-hub", name: "Legacy Coordination" }
-  ],
-  driver: [
-    { slug: "travel-cluster", name: "Driver Hub (Cluster)" },
-    { slug: "driver-portal", name: "Legacy Portal" },
-    { slug: "driver-trip", name: "Legacy Dispatch" },
-  ],
-  travel: [
-    { slug: "customer-cluster", name: "VoyageCore (Cluster)" },
-    { slug: "travel-cluster", name: "Dispatch (Cluster)" },
-  ],
 };
 
 const DOMAIN_LABELS = {
@@ -80,9 +68,6 @@ const DOMAIN_LABELS = {
   customer: "Customer Page",
   hotels: "Hotel Ops",
   dining: "Restaurant Ops",
-  logistics: "Travel Hub",
-  driver: "Driver Portal",
-  travel: "Travel Desk",
 };
 
 const DOMAIN_ROLES = {
@@ -90,9 +75,6 @@ const DOMAIN_ROLES = {
   customer: "Customer",
   hotels: "Hotel Manager",
   dining: "Restaurant Manager",
-  logistics: "Dispatch Lead",
-  driver: "Driver Partner",
-  travel: "Travel Concierge",
 };
 
 const ROOM_TYPES = [
